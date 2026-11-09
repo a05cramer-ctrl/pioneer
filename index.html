@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PIONEER</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The airdrop Elysium won't give you. 3 transactions on Elysium in its first 24 hours = an equal share of $PIONEER.">
+<meta property="og:title" content="PIONEER">
+<meta property="og:description" content="The airdrop Elysium won't give you.">
+<meta property="og:image" content="og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="config.js"></script>
+<style>
+:root{
+  --ground:#031811; --deep:#02100b; --panel:rgba(10,46,38,.55); --panel-solid:#072820;
+  --line:rgba(214,246,250,.08); --line2:rgba(214,246,250,.16);
+  --fg:#effbfc; --mute:#9fc0c2; --dim:#5f8487;
+  --teal:#55C9DB; --tealdeep:#0E3043; --ok:#7CF0B2; --warn:#F2C46B; --bad:#FF7A7A;
+  --f-display:"Unbounded",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--deep)}
+[hidden]{display:none!important}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* background: soft aurora + fading grid + the live sky canvas */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg::before{content:"";position:absolute;inset:-20% -20% auto;height:90vh;background:
+  radial-gradient(40% 55% at 50% 0%,rgba(85,201,219,.20),transparent 70%),
+  radial-gradient(30% 40% at 85% 10%,rgba(124,240,178,.07),transparent 70%),
+  radial-gradient(30% 40% at 12% 18%,rgba(85,201,219,.08),transparent 70%);animation:aurora 18s ease-in-out infinite alternate}
+.bg::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 55% at 50% 18%,#000,transparent 75%);mask-image:radial-gradient(70% 55% at 50% 18%,#000,transparent 75%);opacity:.55}
+@keyframes aurora{to{transform:translate3d(0,4vh,0) scale(1.08)}}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main,header,footer{position:relative;z-index:2}
+
+/* intro */
+#intro{position:fixed;inset:0;z-index:100;overflow:hidden;cursor:pointer;background:radial-gradient(130% 75% at 50% 125%,#0d4148 0%,#04201a 42%,#010b07 100%);transition:opacity .45s ease;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+#intro.out{opacity:0;pointer-events:none}
+#intro canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#intro .horizon{position:absolute;left:-25%;right:-25%;bottom:-62vh;height:90vh;border-radius:50%;background:radial-gradient(closest-side,rgba(85,201,219,.85),rgba(85,201,219,.22) 55%,transparent 100%);filter:blur(6px);opacity:0;will-change:transform,opacity}
+#intro .horizon::after{content:"";position:absolute;left:12%;right:12%;top:9%;height:2px;border-radius:50%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);filter:blur(1px)}
+#intro .flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.75),rgba(85,201,219,.18) 28%,transparent 55%);opacity:0;pointer-events:none}
+#intro .cam{position:absolute;inset:0;display:grid;place-items:center;will-change:transform}
+#intro .rig{display:grid;justify-items:center;gap:clamp(6px,1.6vh,18px);transform:translateY(-3vh)}
+#intro .chute{width:min(66vw,52vh,460px);aspect-ratio:1;transform-origin:50% 22%;will-change:transform}
+#intro .chute svg{width:100%;height:100%;overflow:visible}
+#intro .word{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,8vw,88px);line-height:1.05;letter-spacing:.12em;padding-left:.12em;display:flex}
+#intro .word span{display:inline-block;overflow:hidden;padding-bottom:.04em}
+#intro .word span i{display:inline-block;font-style:normal;transform:translateY(115%)}
+#intro .tag{font-family:var(--f-mono);font-size:clamp(11px,1.35vw,14px);letter-spacing:.22em;text-transform:uppercase;color:var(--mute);opacity:0;white-space:nowrap}
+#intro .hud{position:absolute;inset:clamp(18px,3.2vw,34px);font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);opacity:0;pointer-events:none}
+#intro .hud>div{position:absolute;display:grid;gap:5px}
+#intro .hud .tl{top:6px;left:8px}#intro .hud .tr{top:6px;right:8px;text-align:right;justify-items:end}
+#intro .hud .bl{bottom:6px;left:8px}#intro .hud .br{bottom:6px;right:8px;justify-items:end}
+#intro .hud b{color:var(--fg);font-weight:500}
+#intro .hud .alt{font-size:clamp(26px,4.2vw,46px);letter-spacing:0;text-transform:none;line-height:1;font-variant-numeric:tabular-nums}
+#intro .hud .c{position:absolute;width:16px;height:16px;border:0 solid rgba(239,251,252,.45)}
+#intro .hud .c1{top:-8px;left:-8px;border-top-width:1px;border-left-width:1px}#intro .hud .c2{top:-8px;right:-8px;border-top-width:1px;border-right-width:1px}
+#intro .hud .c3{bottom:-8px;left:-8px;border-bottom-width:1px;border-left-width:1px}#intro .hud .c4{bottom:-8px;right:-8px;border-bottom-width:1px;border-right-width:1px}
+#intro .state{border:1px solid rgba(239,251,252,.3);border-radius:999px;padding:6px 11px;color:var(--fg);display:inline-flex;align-items:center;gap:8px}
+#intro .state::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+#intro .state.open{border-color:var(--teal);color:var(--teal)}
+#intro .state.land{border-color:var(--ok);color:var(--ok)}
+#intro .skip{pointer-events:auto;background:none;border:0;padding:4px 0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--dim);cursor:pointer}
+#intro .skip:hover{color:var(--fg)}
+#intro .iris{position:absolute;left:0;top:0;border-radius:50%;border:3px solid #fff;box-shadow:0 0 30px rgba(85,201,219,.8),inset 0 0 18px rgba(85,201,219,.6);transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+#intro .black{position:absolute;inset:0;background:#010b07;pointer-events:none}
+@media (max-width:560px){ #intro .hud .tr,#intro .hud .tl span{display:none} #intro .tag{font-size:10px;letter-spacing:.14em} }
+html.pre .hero .rv{opacity:0;transform:translateY(18px)}
+.hero .rv{transition:opacity .8s ease var(--d,0s),transform .95s cubic-bezier(.2,.75,.2,1) var(--d,0s)}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+header.top.scrolled{background:color-mix(in srgb,var(--deep) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:10px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:30px;height:30px;border-radius:50%}
+.brand b{font-family:var(--f-display);font-weight:700;font-size:14px;letter-spacing:.14em}
+.top .sp{flex:1}
+.net{font-family:var(--f-mono);font-size:11px;color:var(--mute);display:flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:6px 11px;background:rgba(2,16,11,.4)}
+.net i{width:7px;height:7px;border-radius:50%;background:var(--dim)}
+.net.live i{background:var(--ok);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(124,240,178,.5)}80%,100%{box-shadow:0 0 0 7px rgba(124,240,178,0)}}
+.icon-btn{width:40px;height:40px;border-radius:999px;border:1px solid var(--line2);display:grid;place-items:center;background:rgba(2,16,11,.4);transition:border-color .2s,background .2s}
+.icon-btn:hover{border-color:var(--mute);background:rgba(85,201,219,.08)}
+.icon-btn svg{width:16px;height:16px;fill:var(--fg)}
+
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 22px;font-weight:800;font-size:15px;border:1px solid transparent;cursor:pointer;white-space:nowrap;overflow:hidden;transition:transform .2s,box-shadow .25s,background .2s}
+.btn-main{background:var(--fg);color:var(--deep);box-shadow:0 0 0 0 rgba(85,201,219,0)}
+.btn-main:hover{transform:translateY(-1px);box-shadow:0 10px 40px -8px rgba(85,201,219,.65)}
+.btn-main::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(85,201,219,.45) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 4.5s ease-in-out infinite}
+@keyframes sheen{0%,62%{transform:translateX(-120%)}82%,100%{transform:translateX(120%)}}
+.btn-ghost{border-color:var(--line2);background:rgba(2,16,11,.35)}
+.btn-ghost:hover{border-color:var(--mute)}
+.btn-sm{padding:9px 16px;font-size:14px}
+.btn[aria-disabled="true"],.btn:disabled{opacity:.4;pointer-events:none}
+
+/* hero */
+.hero{min-height:calc(100svh - 64px);display:grid;place-items:center;text-align:center;padding-block:24px 56px}
+.hero-in{display:grid;justify-items:center;width:100%}
+.hero-chute{width:clamp(120px,17vw,190px);aspect-ratio:1;margin-bottom:6px;filter:drop-shadow(0 20px 50px rgba(85,201,219,.35))}
+.hero-chute svg{width:100%;height:100%;overflow:visible;animation:sway 6s ease-in-out infinite;transform-origin:50% 15%}
+@keyframes sway{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(8px)}}
+.pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(85,201,219,.3);background:rgba(85,201,219,.06);border-radius:999px;padding:7px 13px}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(36px,7vw,92px);line-height:.98;letter-spacing:-.02em;margin:20px 0 18px;max-width:14ch;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(180deg,#9fe6f1,var(--teal) 55%,#2f8fa3);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(16px,1.6vw,19px);color:var(--mute);margin:0 0 30px}
+.sub b{color:var(--fg);font-weight:700}
+
+.check{width:min(100%,560px);position:relative}
+.bar{display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(6,35,28,.7);border:1px solid var(--line2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:border-color .2s,box-shadow .3s}
+.bar:focus-within{border-color:rgba(85,201,219,.6);box-shadow:0 0 0 6px rgba(85,201,219,.08),0 20px 60px -20px rgba(85,201,219,.5)}
+.bar input{flex:1;min-width:0;background:transparent;border:0;padding:0 16px;font-family:var(--f-mono);font-size:14px;outline:none}
+.bar input::placeholder{color:var(--dim)}
+.res{min-height:70px;margin-top:16px;display:grid;justify-items:center;align-content:start;gap:10px}
+.pips{display:flex;gap:6px;width:160px}
+.pip{flex:1;height:6px;border-radius:999px;background:var(--line2);transition:background .3s,box-shadow .3s}
+.pip.on{background:var(--teal);box-shadow:0 0 12px rgba(85,201,219,.7)}
+.verdict{font-family:var(--f-display);font-weight:700;font-size:18px;animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
+.verdict.ok{color:var(--ok)}.verdict.warn{color:var(--warn)}.verdict.bad{color:var(--bad)}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.96)}}
+.hint{font-size:13.5px;color:var(--dim);margin:0}
+.scroll-cue{margin-top:34px;width:22px;height:34px;border:1.5px solid var(--line2);border-radius:999px;position:relative}
+.scroll-cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--mute);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{position:relative;border:1px solid var(--line2);border-radius:22px;background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow:hidden;isolation:isolate}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(320px circle at var(--mx,50%) var(--my,-40%),rgba(85,201,219,.16),transparent 60%);opacity:0;transition:opacity .3s}
+.card:hover::before{opacity:1}
+.stat{padding:24px 24px 22px}
+.lab{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.num{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(24px,3vw,38px);margin-top:10px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap}
+.sk{display:inline-block;height:.8em;width:5.5em;border-radius:6px;background:linear-gradient(90deg,rgba(85,201,219,.06),rgba(85,201,219,.16),rgba(85,201,219,.06));background-size:200% 100%;animation:sk 1.2s linear infinite;vertical-align:middle}
+@keyframes sk{to{background-position:-200% 0}}
+
+section{padding-block:clamp(64px,10vw,120px)}
+.head{text-align:center;display:grid;justify-items:center;gap:14px;margin-bottom:40px}
+h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4.4vw,54px);line-height:1;letter-spacing:-.02em;margin:0;text-wrap:balance}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:0}
+.step{padding:28px 24px 26px;display:grid;gap:44px}
+.step .n{font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--teal);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(85,201,219,.35);background:rgba(85,201,219,.07)}
+.step h3{font-family:var(--f-display);font-weight:700;font-size:21px;margin:0 0 6px;letter-spacing:-.01em}
+.step p{margin:0;color:var(--mute);font-size:15px}
+.rules{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px}
+.rules span{font-family:var(--f-mono);font-size:12px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+
+/* pass */
+.pass-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:center}
+.pass-copy h2{text-align:left}
+.pass-copy p{color:var(--mute);margin:16px 0 26px;font-size:17px}
+.pass-actions{display:flex;gap:10px;flex-wrap:wrap}
+.stage3d{perspective:1100px}
+.pass{position:relative;aspect-ratio:1.6;border-radius:26px;padding:clamp(18px,3vw,30px);overflow:hidden;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  background:radial-gradient(90% 120% at 100% 0%,rgba(85,201,219,.35),transparent 55%),linear-gradient(150deg,#0b3a40 0%,#062720 45%,#031811 100%);
+  border:1px solid rgba(214,246,250,.22);box-shadow:0 40px 90px -40px rgba(85,201,219,.55),inset 0 1px 0 rgba(255,255,255,.12)}
+.pass::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.14) 45%,transparent 60%);transform:translateX(var(--shine,-60%));transition:transform .5s;pointer-events:none}
+.pass .stripes{position:absolute;right:-6%;top:-10%;width:62%;height:120%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 10px,transparent 10px 26px);transform:rotate(-8deg);pointer-events:none}
+.pass .chute{position:absolute;right:4%;top:6%;width:44%;aspect-ratio:1;filter:drop-shadow(0 18px 30px rgba(0,0,0,.4))}
+.pass .chute svg{width:100%;height:100%;overflow:visible}
+.pass-in{position:relative;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.pass .k{font-family:var(--f-mono);font-size:clamp(9px,1vw,11px);letter-spacing:.22em;text-transform:uppercase;color:var(--teal)}
+.pass .who{font-family:var(--f-display);font-weight:800;font-size:clamp(20px,3vw,34px);line-height:1.05;margin-top:8px;max-width:9ch}
+.pass .row{display:flex;gap:clamp(14px,3vw,32px);align-items:end}
+.pass .row div{display:grid;gap:3px}
+.pass .row small{font-family:var(--f-mono);font-size:clamp(8.5px,.9vw,10px);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.pass .row b{font-family:var(--f-mono);font-weight:500;font-size:clamp(12px,1.4vw,16px)}
+.pass .stamp{position:absolute;left:clamp(18px,3vw,30px);top:50%;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--warn);border:1px solid rgba(242,196,107,.5);border-radius:6px;padding:3px 7px}
+.pass.locked .who{color:rgba(239,251,252,.35)}
+
+/* community */
+.join{text-align:center;padding:clamp(40px,7vw,80px) 20px;display:grid;justify-items:center;gap:18px}
+.join p{color:var(--mute);margin:0;font-size:17px}
+.join .acts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+
+/* faq */
+.faq{max-width:720px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line);padding:18px 4px}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-mono);color:var(--mute);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0;color:var(--mute)}
+
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
+
+/* reveal on scroll */
+.rv2{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.75,.2,1);transition-delay:var(--d,0s)}
+.rv2.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .stats,.steps{grid-template-columns:1fr}
+  .stat{display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
+  .num{margin-top:0;font-size:22px}
+  .step{gap:22px}
+  .pass-wrap{grid-template-columns:1fr;gap:28px}
+  .pass-copy,.pass-copy h2{text-align:center}
+  .pass-actions{justify-content:center}
+  .net span{display:none}
+}
+@media (max-width:420px){ .bar input{padding:0 10px;font-size:13px} .bar .btn{padding:12px 16px} }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} .rv2{opacity:1;transform:none} }
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<template id="chuteTpl">
+<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+ <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55C9DB"/><stop offset="1" stop-color="#0E3043"/></linearGradient>
+ <filter id="cgrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 -.18"/><feComposite in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="overlay"/></filter>
+ <clipPath id="ccan"><path d="M262 520 A250 250 0 0 1 762 520 Q700 490 637 520 Q575 490 512 520 Q449 490 387 520 Q324 490 262 520 Z"/></clipPath>
+ <filter id="cglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+</defs>
+<g transform="translate(512 512) scale(1.32) translate(-512 -530)">
+ <g class="cn"><g clip-path="url(#ccan)">
+  <rect x="250" y="260" width="530" height="280" fill="url(#cg)" filter="url(#cgrain)"/>
+  <g fill="#031811"><rect x="250" y="300" width="530" height="14"/><rect x="250" y="352" width="530" height="14"/><rect x="250" y="404" width="530" height="14"/><rect x="250" y="456" width="530" height="14"/></g>
+ </g></g>
+ <g class="ln" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none"><path pathLength="1" d="M492 700 L266 520"/><path pathLength="1" d="M497 700 L387 520"/><path pathLength="1" d="M512 700 L512 520"/><path pathLength="1" d="M527 700 L637 520"/><path pathLength="1" d="M532 700 L758 520"/></g>
+ <g class="tk">
+ <circle cx="512" cy="742" r="56" fill="#fff" filter="url(#cglow)" opacity=".5"/>
+ <circle cx="512" cy="742" r="56" fill="#fff"/>
+ <circle cx="512" cy="742" r="34" fill="none" stroke="#031811" stroke-width="10"/>
+ </g>
+</g>
+</svg>
+</template>
+
+<div id="intro" hidden aria-hidden="true">
+  <canvas id="fx"></canvas>
+  <div class="horizon" id="horizon"></div>
+  <div class="flash" id="flash"></div>
+  <div class="cam" id="cam">
+    <div class="rig">
+      <div class="chute" id="introChute"></div>
+      <div class="word" id="introWord"></div>
+      <div class="tag" id="introTag">The airdrop Elysium won't give you</div>
+    </div>
+  </div>
+  <div class="hud" id="hud">
+    <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+    <div class="tl"><b>$PIONEER</b><span>Drop 001 · Day one</span></div>
+    <div class="tr"><b>Elysium</b><span id="hudChain">Chain 99901</span></div>
+    <div class="bl"><span>Altitude</span><b class="alt" id="hudAlt">4,000 m</b><span id="hudVel" style="text-transform:none;letter-spacing:.08em">212 km/h</span></div>
+    <div class="br"><span class="state" id="hudState">Freefall</span><button class="skip" id="skip" type="button">Skip intro →</button></div>
+  </div>
+  <div class="iris" id="iris"></div>
+  <div class="black" id="black"></div>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="PIONEER"><img src="pfp.png" alt=""><b>PIONEER</b></a>
+    <div class="sp"></div>
+    <div class="net" id="net"><i></i><span id="netTxt">Elysium</span></div>
+    <a class="icon-btn" id="xTop" href="#" target="_blank" rel="noopener" aria-label="PIONEER on X" hidden><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.3 22H3.2l7.3-8.3L1 2h6.4l4.4 5.9L18.9 2Zm-1.1 18h1.7L6.4 3.9H4.6L17.8 20Z"/></svg></a>
+    <a class="btn btn-main btn-sm" id="buyTop" href="#" target="_blank" rel="noopener" aria-disabled="true">Buy at launch</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <div class="hero-in">
+      <div class="hero-chute rv" style="--d:0s" id="heroChute"></div>
+      <div class="pill rv" style="--d:.05s"><i></i>Elysium · first 24 hours</div>
+      <h1 class="rv" style="--d:.12s">The airdrop Elysium <em>won't give you.</em></h1>
+      <p class="sub rv" style="--d:.22s"><b id="minTx">3</b> transactions. First <b>24h</b>. Equal share.</p>
+      <form class="check rv" style="--d:.32s" id="form" autocomplete="off">
+        <div class="bar"><input id="addr" aria-label="Wallet address" placeholder="Paste your 0x wallet" spellcheck="false"><button class="btn btn-main" type="submit" id="go">Check</button></div>
+        <div class="res" id="res" aria-live="polite"><div class="pips" id="pips"></div><p class="hint" id="hint">Reads your wallet straight from Elysium.</p></div>
+      </form>
+      <a class="scroll-cue rv" style="--d:.5s" href="#stats" aria-label="Scroll"></a>
+    </div>
+  </div>
+
+  <div class="wrap" id="stats">
+    <div class="stats">
+      <div class="card stat rv2"><span class="lab" id="sWinLab">Window</span><strong class="num" id="sWin"><span class="sk"></span></strong></div>
+      <div class="card stat rv2" style="--d:.08s"><span class="lab">Elysium block</span><strong class="num" id="sBlock"><span class="sk"></span></strong></div>
+      <div class="card stat rv2" style="--d:.16s"><span class="lab">Airdrop pool</span><strong class="num" id="sPool"><span class="sk"></span></strong></div>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="head rv2"><span class="pill"><i></i>How it works</span><h2>Show up early.</h2></div>
+      <ol class="steps">
+        <li class="card step rv2"><span class="n">1</span><div><h3>Land on Elysium</h3><p>Bridge HYPE on day one.</p></div></li>
+        <li class="card step rv2" style="--d:.08s"><span class="n">2</span><div><h3>Send <span class="minTx">3</span> txs</h3><p>Swap, launch, send. Anything.</p></div></li>
+        <li class="card step rv2" style="--d:.16s"><span class="n">3</span><div><h3>Get $PIONEER</h3><p>Same amount for every wallet.</p></div></li>
+      </ol>
+      <div class="rules rv2"><span>Regular wallets only</span><span>Equal split</span><span>Snapshot at window close</span><span>List published</span></div>
+    </div>
+  </section>
+
+  <section id="pass" style="padding-top:0">
+    <div class="wrap pass-wrap">
+      <div class="pass-copy rv2">
+        <span class="pill"><i></i>Pioneer pass</span>
+        <h2 style="margin-top:14px">Plant your flag.</h2>
+        <p id="passCopy">Check your wallet. Post your pass. Bring your people.</p>
+        <div class="pass-actions">
+          <a class="btn btn-main" id="share" href="#" target="_blank" rel="noopener" aria-disabled="true">Post on X</a>
+          <button class="btn btn-ghost" id="save" type="button" disabled>Save image</button>
+        </div>
+      </div>
+      <div class="stage3d rv2" style="--d:.1s">
+        <div class="pass locked" id="passCard">
+          <div class="stripes"></div>
+          <div class="chute" id="passChute"></div>
+          <div class="stamp" id="passStamp" hidden>Testnet</div>
+          <div class="pass-in">
+            <div><div class="k">$PIONEER · Elysium</div><div class="who" id="pWho">Day-one Pioneer</div></div>
+            <div class="row">
+              <div><small>Wallet</small><b id="pAddr">0x····</b></div>
+              <div><small>Txs</small><b id="pTx">–</b></div>
+              <div><small>Status</small><b id="pStatus">Unchecked</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="join" style="padding-top:0">
+    <div class="wrap">
+      <div class="card join rv2">
+        <h2>The sky fills up<br>on day one.</h2>
+        <p>Every chute behind this page is a live Elysium transaction.</p>
+        <div class="acts">
+          <a class="btn btn-main" id="xJoin" href="#" target="_blank" rel="noopener">Join on X</a>
+          <a class="btn btn-ghost" id="tell" href="#" target="_blank" rel="noopener">Tell a friend</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="faq rv2">
+        <details><summary>Is this from Elysium?</summary><p>No. PIONEER is independent and community-run. Elysium has no token.</p></details>
+        <details><summary>What counts?</summary><p>Any <span class="minTx">3</span> transactions your wallet sends in Elysium's first 24 hours. Contract wallets don't count.</p></details>
+        <details><summary>When does it land?</summary><p>After the window closes and the eligible list is posted.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>PIONEER · not affiliated with Kinetiq</span><button class="linkbtn" id="replay" type="button">Replay intro</button></div>
+</footer>
+
+<script>
+(function(){
+const C = window.PIONEER_CFG || {};
+const $ = id => document.getElementById(id);
+const live = C.NETWORK === "mainnet" && C.MAINNET_RPC;
+const RPC = live ? C.MAINNET_RPC : C.TESTNET_RPC;
+const MIN = C.MIN_TX || 3;
+const POOL = Math.round((C.TOTAL_SUPPLY||1e9) * (C.AIRDROP_PCT||20) / 100);
+const fmt = n => n.toLocaleString("en-US");
+const short = a => a.slice(0,6)+"…"+a.slice(-4);
+const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+const SITE = C.SITE || location.href.split(/[?#]/)[0];
+
+/* art */
+const tpl = $("chuteTpl").innerHTML;
+const uniq = p => tpl.replace(/id="c(g|grain|can|glow)"/g,'id="'+p+'$1"').replace(/url\(#c(g|grain|can|glow)\)/g,'url(#'+p+'$1)');
+$("heroChute").innerHTML = uniq("h"); $("passChute").innerHTML = uniq("p");
+
+/* config copy */
+document.querySelectorAll(".minTx").forEach(e=>e.textContent=MIN); $("minTx").textContent=MIN;
+$("pips").innerHTML = Array.from({length:MIN},()=>'<div class="pip"></div>').join("");
+if(C.CA){ const b=$("buyTop"); if(C.BUY){ b.href=C.BUY; b.removeAttribute("aria-disabled"); b.textContent="Buy $PIONEER"; } }
+const X = C.X || "";
+if(X){ $("xTop").href=X; $("xTop").hidden=false; $("xJoin").href=X; } else { $("xJoin").href="https://x.com/search?q=%24PIONEER%20Elysium&f=live"; }
+const tellText = "Elysium has no airdrop. $PIONEER is the airdrop.\n\n"+MIN+" txs on Elysium in the first 24h = equal share.\n\nCheck your wallet:";
+$("tell").href = "https://x.com/intent/post?text="+encodeURIComponent(tellText)+"&url="+encodeURIComponent(SITE);
+
+/* header on scroll */
+const top=$("top"); const onScroll=()=>top.classList.toggle("scrolled",scrollY>10); addEventListener("scroll",onScroll,{passive:true}); onScroll();
+
+/* reveal on scroll */
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.15,rootMargin:"0px 0px -40px 0px"}) : null;
+document.querySelectorAll(".rv2").forEach(el=> io ? io.observe(el) : el.classList.add("in"));
+
+/* card spotlight */
+document.querySelectorAll(".card").forEach(c=>c.addEventListener("pointermove",e=>{ const r=c.getBoundingClientRect(); c.style.setProperty("--mx",(e.clientX-r.left)+"px"); c.style.setProperty("--my",(e.clientY-r.top)+"px"); }));
+
+/* pass tilt */
+const card=$("passCard");
+if(!reduce){
+  card.parentElement.addEventListener("pointermove",e=>{ const r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform="rotateY("+(x*14)+"deg) rotateX("+(-y*12)+"deg)"; card.style.setProperty("--shine",(x*120)+"%"); });
+  card.parentElement.addEventListener("pointerleave",()=>{ card.style.transform=""; card.style.setProperty("--shine","-60%"); });
+}
+
+/* window */
+const W0 = C.WINDOW_START ? Date.parse(C.WINDOW_START) : NaN, W1 = W0 + (C.WINDOW_HOURS||24)*3600e3;
+const hms = ms=>{ ms=Math.max(0,ms); const h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60e3),s=Math.floor(ms%60e3/1e3); return [h,m,s].map(v=>String(v).padStart(2,"0")).join(":"); };
+const phase = ()=> isNaN(W0) ? "pre" : Date.now()<W0 ? "pre" : Date.now()<W1 ? "open" : "closed";
+function tickWin(){ const p=phase(), n=Date.now();
+  if(isNaN(W0)){ $("sWinLab").textContent="Window opens"; $("sWin").textContent="At mainnet"; }
+  else if(p==="pre"){ $("sWinLab").textContent="Window opens in"; $("sWin").textContent=hms(W0-n); }
+  else if(p==="open"){ $("sWinLab").textContent="Time left"; $("sWin").textContent=hms(W1-n); }
+  else { $("sWinLab").textContent="Window"; $("sWin").textContent="Closed"; } }
+tickWin(); setInterval(tickWin,1000);
+
+/* pool count-up when visible */
+(function(){ const el=$("sPool"); let ran=false; const run=()=>{ if(ran) return; ran=true; const t0=performance.now();
+  const f=t=>{ const k=Math.min(1,(t-t0)/1400), e=1-Math.pow(1-k,3); el.textContent=fmt(Math.round(POOL*e)); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
+  if(io && !reduce){ const o=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ run(); o.disconnect(); } },{threshold:.4}); o.observe(el); } else el.textContent=fmt(POOL); })();
+
+/* live sky: ambient chutes drift; every live Elysium tx drops a bright one */
+const sky=$("sky"), sx=sky.getContext("2d"); let SW=0,SH=0; const chutes=[];
+function skySize(){ const d=Math.min(2,devicePixelRatio||1); SW=innerWidth; SH=innerHeight; sky.width=SW*d; sky.height=SH*d; sx.setTransform(d,0,0,d,0,0); }
+skySize(); addEventListener("resize",skySize);
+function add(liveOne, y){ const z=liveOne? .55+Math.random()*.45 : .15+Math.random()*.35;
+  chutes.push({x:Math.random()*SW, y: y!=null?y:-30, z, live:liveOne, ph:Math.random()*6.28, a: liveOne? 0 : .05+z*.12}); }
+for(let i=0,n=Math.round(Math.min(22,SW*SH/60000));i<n;i++) add(false, Math.random()*SH);
+function drawChute(x,y,s,a,rot,lit){
+  sx.save(); sx.translate(x,y); sx.rotate(rot); sx.globalAlpha=a;
+  sx.fillStyle = lit? "#55C9DB" : "#8fd3dd"; sx.beginPath(); sx.arc(0,0,s,Math.PI,0); sx.closePath(); sx.fill();
+  sx.fillStyle="rgba(3,24,17,.85)"; for(const k of [.35,.65]){ sx.fillRect(-s, -s*k, s*2, Math.max(1,s*.09)); }
+  sx.strokeStyle="rgba(255,255,255,.9)"; sx.lineWidth=Math.max(.6,s*.07); sx.beginPath();
+  sx.moveTo(-s,0); sx.lineTo(0,s*1.35); sx.moveTo(s,0); sx.lineTo(0,s*1.35); sx.moveTo(0,0); sx.lineTo(0,s*1.35); sx.stroke();
+  sx.fillStyle="#fff"; if(lit){ sx.shadowColor="rgba(85,201,219,.9)"; sx.shadowBlur=s*1.2; }
+  sx.beginPath(); sx.arc(0,s*1.55,s*.26,0,6.283); sx.fill(); sx.restore(); }
+let last=performance.now();
+function skyFrame(t){ const dt=Math.min(50,t-last); last=t; sx.clearRect(0,0,SW,SH);
+  for(let i=chutes.length-1;i>=0;i--){ const c=chutes[i];
+    c.y += dt*(.012+c.z*.03); c.x += Math.sin(t/1800+c.ph)*.12*c.z;
+    if(c.live){ c.a=Math.min(.75, c.a+dt/600); if(c.y>SH*.55) c.a*=.985; }
+    if(c.y>SH+40 || (c.live && c.a<.02 && c.y>SH*.5)){ chutes.splice(i,1); if(!c.live) add(false); continue; }
+    drawChute(c.x,c.y,5+c.z*11,c.a,Math.sin(t/900+c.ph)*.18,c.live); }
+  requestAnimationFrame(skyFrame); }
+if(!reduce) requestAnimationFrame(skyFrame);
+
+/* rpc + live chain */
+async function rpc(method, params){
+  const r = await fetch(RPC,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({jsonrpc:"2.0",id:1,method,params})});
+  const j = await r.json(); if(j.error) throw new Error(j.error.message||"rpc error"); return j.result; }
+let lastNum=0;
+async function tickChain(){
+  try{ const b=await rpc("eth_getBlockByNumber",["latest",false]); const num=parseInt(b.number,16);
+    $("sBlock").textContent=fmt(num); $("net").className="net live"; $("netTxt").textContent= live? "Elysium mainnet" : "Elysium testnet";
+    if(num>lastNum){ const n=Math.min(8,Math.max(0,(b.transactions||[]).length-1)); if(lastNum && !reduce) for(let i=0;i<n;i++) setTimeout(()=>add(true),i*140); lastNum=num; }
+  }catch(e){ $("net").className="net"; $("netTxt").textContent="Reconnecting"; } }
+tickChain(); setInterval(tickChain,1500);
+
+/* checker + pass */
+let passData=null;
+function setPips(n){ [...$("pips").children].forEach((p,i)=>p.classList.toggle("on",i<n)); }
+function verdict(cls,title,hint){ $("res").querySelector(".verdict")?.remove(); const v=document.createElement("div"); v.className="verdict "+cls; v.textContent=title; $("res").insertBefore(v,$("hint")); $("hint").textContent=hint; }
+function fillPass(a,n,ok){
+  passData={a,n,ok}; card.classList.toggle("locked",!ok);
+  $("pAddr").textContent=short(a); $("pTx").textContent=fmt(n); $("pStatus").textContent= ok ? "Eligible" : n+"/"+MIN;
+  $("pWho").textContent = ok ? "Day-one Pioneer" : "Almost a Pioneer"; $("passStamp").hidden = !!live;
+  const sh=$("share"); const txt = ok ? "I'm a day-one Pioneer on Elysium. "+fmt(n)+" txs in.\n\nElysium has no airdrop. $PIONEER is the airdrop.\n\nCheck yours:" : "I'm "+n+"/"+MIN+" on Elysium. Racing for the $PIONEER airdrop.\n\nCheck yours:";
+  sh.href="https://x.com/intent/post?text="+encodeURIComponent(txt)+"&url="+encodeURIComponent(SITE); sh.removeAttribute("aria-disabled");
+  $("save").disabled=false; $("passCopy").textContent= ok ? "You're in. Post it and bring your people." : "Send "+(MIN-n)+" more, then post your pass.";
+}
+/* window blocks: txs are counted as nonce(end) - nonce(start), so nothing sent before the window counts */
+const bcache={};
+async function blockAt(ts){ // first block with timestamp >= ts
+  if(bcache[ts]) return bcache[ts];
+  try{ const k="pio_b_"+ts, v=localStorage.getItem(k); if(v) return bcache[ts]=+v; }catch(_){}
+  const L=await rpc("eth_getBlockByNumber",["latest",false]); let lo=0, hi=parseInt(L.number,16);
+  if(parseInt(L.timestamp,16)<ts) return null;
+  while(hi-lo>1){ const m=Math.floor((lo+hi)/2); const b=await rpc("eth_getBlockByNumber",["0x"+m.toString(16),false]); if(parseInt(b.timestamp,16)<ts) lo=m; else hi=m; }
+  try{ localStorage.setItem("pio_b_"+ts,String(hi)); }catch(_){}
+  return bcache[ts]=hi;
+}
+const hex = n => "0x"+n.toString(16);
+async function windowTxs(a){
+  const p=phase();
+  const sb = C.WINDOW_START_BLOCK || await blockAt(Math.floor(W0/1000));
+  let eb = "latest";
+  if(p==="closed"){ const e = C.WINDOW_END_BLOCK || await blockAt(Math.floor(W1/1000)); eb = e ? hex(e-1) : "latest"; }
+  const [n1,n0,code]=await Promise.all([rpc("eth_getTransactionCount",[a,eb]), sb? rpc("eth_getTransactionCount",[a,hex(sb-1)]) : Promise.resolve("0x0"), rpc("eth_getCode",[a,"latest"])]);
+  return {n: parseInt(n1,16)-parseInt(n0,16), code};
+}
+$("form").addEventListener("submit", async e=>{
+  e.preventDefault(); const a=$("addr").value.trim();
+  if(!/^0x[0-9a-fA-F]{40}$/.test(a)){ setPips(0); verdict("bad","Not an Elysium address","Starts with 0x, 42 characters."); return; }
+  const p=phase();
+  if(p==="pre"){ setPips(0); verdict("warn","Window not open yet", isNaN(W0) ? "Opens with Elysium's public launch. Txs from then count." : "Opens in "+hms(W0-Date.now())+". Txs from then count."); return; }
+  $("go").textContent="…"; $("go").disabled=true;
+  try{ const {n,code}=await windowTxs(a); setPips(Math.min(n,MIN)); const tn = live? "" : " · testnet";
+    if(code && code!=="0x"){ verdict("bad","Contract wallet","Use the wallet that signs your txs."); }
+    else if(n>=MIN){ verdict("ok","You're a Pioneer", fmt(n)+" txs in the window"+tn); fillPass(a,n,true); setTimeout(()=>$("pass").scrollIntoView({behavior:"smooth",block:"center"}),700); }
+    else if(p==="closed"){ verdict("bad","Missed it", n+"/"+MIN+" txs in the window"+tn); }
+    else { verdict("warn",(MIN-n)+" more to go", n+"/"+MIN+" txs in the window"+tn); fillPass(a,n,false); }
+  }catch(err){ verdict("bad","Elysium didn't answer","Try again in a few seconds."); }
+  $("go").textContent="Check"; $("go").disabled=false;
+});
+
+/* pass image: 1200x630 for X */
+$("save").addEventListener("click", async ()=>{
+  if(!passData) return; const {a,n,ok}=passData;
+  try{ await Promise.all(["800 64px Unbounded","500 22px 'IBM Plex Mono'"].map(f=>document.fonts.load(f))); }catch(_){}
+  const cv=document.createElement("canvas"); cv.width=1200; cv.height=630; const g=cv.getContext("2d");
+  let gr=g.createLinearGradient(0,0,1200,630); gr.addColorStop(0,"#0b3a40"); gr.addColorStop(.5,"#062720"); gr.addColorStop(1,"#031811"); g.fillStyle=gr; g.fillRect(0,0,1200,630);
+  gr=g.createRadialGradient(1050,40,10,1050,40,700); gr.addColorStop(0,"rgba(85,201,219,.4)"); gr.addColorStop(1,"rgba(85,201,219,0)"); g.fillStyle=gr; g.fillRect(0,0,1200,630);
+  const img=new Image(); img.src="pfp.png"; await img.decode().catch(()=>{});
+  if(img.naturalWidth){ g.save(); g.beginPath(); g.arc(905,315,250,0,6.283); g.clip(); g.drawImage(img,655,65,500,500); g.restore(); }
+  g.fillStyle="#55C9DB"; g.font="500 22px 'IBM Plex Mono', monospace"; g.fillText("$PIONEER · ELYSIUM", 70, 110);
+  g.fillStyle="#effbfc"; g.font="800 64px Unbounded, sans-serif"; const w=ok?["Day-one","Pioneer"]:["Almost a","Pioneer"]; g.fillText(w[0],70,215); g.fillText(w[1],70,290);
+  g.fillStyle="#5f8487"; g.font="500 18px 'IBM Plex Mono', monospace"; g.fillText("WALLET",70,455); g.fillText("TXS",370,455); g.fillText("STATUS",500,455);
+  g.fillStyle="#effbfc"; g.font="500 28px 'IBM Plex Mono', monospace"; g.fillText(short(a),70,495); g.fillText(fmt(n),370,495); g.fillText(ok?"Eligible":n+"/"+MIN,500,495);
+  g.fillStyle="#9fc0c2"; g.font="500 18px 'IBM Plex Mono', monospace"; g.fillText("The airdrop Elysium won't give you."+(live?"":"  (testnet)"),70,575);
+  const link=document.createElement("a"); link.download="pioneer-pass.png"; link.href=cv.toDataURL("image/png"); document.body.appendChild(link); link.click(); link.remove();
+});
+
+/* intro: a skydive. freefall -> chute snaps open -> drift -> land on Elysium -> the token opens into the site */
+(function(){
+  const ov=$("intro"), root=document.documentElement;
+  const q=new URLSearchParams(location.search);
+  const fixedT = q.has("introT") ? Number(q.get("introT")) : null;
+  const force = q.has("intro") || fixedT!==null;
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let seen=false; try{ seen=sessionStorage.getItem("pioneer_intro")==="1"; }catch(_){}
+
+  const TD=1250, TL=3150, TI=3200, TE=3950;       // deploy, land, iris start, end (ms)
+  const clamp=x=>x<0?0:x>1?1:x, lerp=(a,b,k)=>a+(b-a)*k;
+  const eOut=x=>1-Math.pow(1-x,3), eIn=x=>x*x*x, eIO=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+  const snap=x=>x<=0?0:1-Math.exp(-7*x)*Math.cos(13*x);
+  const back=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+  const cv=$("fx"), cx=cv.getContext("2d"), chute=$("introChute"), cam=$("cam"), word=$("introWord"), tag=$("introTag");
+  const hud=$("hud"), alt=$("hudAlt"), vel=$("hudVel"), state=$("hudState"), chain=$("hudChain");
+  const flash=$("flash"), hor=$("horizon"), iris=$("iris"), black=$("black");
+  let W=0,H=0, letters=[], cn, lnG, lines, blockN=null, ix=0, iy=0, done=true, raf=0, lastState="";
+  let sd=11; const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;
+  const P=Array.from({length:150},()=>({x:rnd(),y:rnd(),z:.2+rnd()*.8,w:rnd()}));
+  function size(){ const d=Math.min(2,window.devicePixelRatio||1); W=innerWidth; H=innerHeight; cv.width=W*d; cv.height=H*d; cx.setTransform(d,0,0,d,0,0); }
+  function tokenPos(){ const r=chute.getBoundingClientRect(); return [r.left+r.width/2, r.top+r.height*.773, r.width, r.top+r.height*.33]; }
+
+  function render(t){
+    const dt=t-TD, landed=t>=TL;
+    black.style.opacity=1-clamp(t/320);
+    hud.style.opacity=clamp((t-120)/380);
+    // speed: freefall, then the canopy bites and it bleeds off fast
+    const vf = t<TD ? 1 : .055+.945*Math.exp(-dt/230);
+    const S  = t<TD ? t : TD + .055*dt + .945*230*(1-Math.exp(-dt/230));
+    // altitude + speed readout
+    const a = t<TD ? 4000-2500*(t/TD) : 1500*(1-(1-Math.pow(1-clamp(dt/(TL-TD)),2)));
+    alt.textContent = Math.max(0,Math.round(a/5)*5).toLocaleString("en-US")+" m";
+    const v = t<TD ? 212+Math.sin(t/55)*3 : landed ? 0 : 17+195*Math.exp(-dt/230);
+    vel.textContent = Math.round(v)+" km/h";
+    const st = t<TD+60 ? "Freefall" : landed ? "Landed" : "Chute open";
+    if(st!==lastState){ lastState=st; state.textContent=st; state.className="state"+(st==="Chute open"?" open":st==="Landed"?" land":"");
+      if(landed) chain.textContent = (live && blockN) ? "Block "+fmt(blockN) : "Day one"; else chain.textContent="Chain "+(C.MAINNET_CHAIN_ID||99901); }
+    // the rig: falls in from above, yanked up on deploy, then drifts down and sways
+    let y = t<TD ? lerp(-64,0,eOut(t/TD)) : 0, rot;
+    if(t>=TD){ y += -3.4*(1-Math.exp(-dt/55))*Math.exp(-dt/380) + 2.4*eIO(clamp(dt/(TL-TD))); rot=Math.sin(dt/620)*3.4*clamp(dt/450)*(landed?Math.max(0,1-(t-TL)/400):1); }
+    else rot=Math.sin(t/80)*1.4;
+    chute.style.transform="translateY("+y+"vh) rotate("+rot+"deg)";
+    // canopy snaps open out of the pack, lines pay out from the token
+    const e1=clamp((t-TD+30)/560), sx=t<TD-30?.02:.04+.96*snap(e1), sy=Math.max(.001,back(e1));
+    cn.setAttribute("transform","translate(0 "+((1-eOut(e1))*210)+") translate(512 520) scale("+sx+" "+sy+") translate(-512 -520)");
+    cn.style.opacity = t<TD-30?0:1;
+    const e2=eOut(clamp((t-TD)/440)); lnG.style.opacity=t<TD?0:1; lines.forEach(p=>p.style.strokeDashoffset=String(1-e2));
+    flash.style.opacity = dt<0 ? 0 : .55*clamp(dt/40)*Math.exp(-Math.max(0,dt-40)/150);
+    // camera: buffeting in freefall, a hard jolt on deploy, still on landing
+    const amp=(t<TD?2.2:.35+10*Math.exp(-dt/170))*(landed?Math.max(0,1-(t-TL)/220):1);
+    cam.style.transform="translate("+((Math.sin(t*.091)+.6*Math.sin(t*.037+1.3))*amp/1.6)+"px,"+((Math.cos(t*.083+.4)+.6*Math.sin(t*.051))*amp/1.6)+"px)";
+    // ground glow comes up as altitude drops
+    const g=1-Math.max(0,a)/4000; hor.style.opacity=String(.12+.88*Math.pow(g,1.4)); hor.style.transform="translateY("+((1-g)*34-4)+"vh)";
+    // wordmark + tag
+    letters.forEach((s,i)=>{ const k=eOut(clamp((t-1700-i*55)/480)); s.style.transform="translateY("+((1-k)*115)+"%)"; });
+    const kt=eOut(clamp((t-2280)/520)); tag.style.opacity=String(kt); tag.style.letterSpacing=(.22+.3*(1-kt))+"em";
+    // wind: streaks rushing up past us, collapsing to drifting dust after deploy
+    cx.clearRect(0,0,W,H); cx.lineCap="round";
+    for(const p of P){
+      const yy=(((p.y-p.z*S/380)%1)+1)%1, Y=yy*(H+240)-120, X=p.x*W, len=1.5+p.z*vf*H*.2;
+      const al=(.1+.5*p.z)*(.3+.7*vf);
+      cx.strokeStyle=p.w>.8?"rgba(85,201,219,"+al+")":"rgba(226,248,250,"+al*.85+")"; cx.lineWidth=.6+p.z*1.5;
+      cx.beginPath(); cx.moveTo(X,Y); cx.lineTo(X,Y+len); cx.stroke();
+    }
+    const [tx,ty,cw,cy]=tokenPos();
+    if(t<TD+250){ // token's own trail in freefall
+      const L=H*.38*vf*(t<TD?1:Math.max(0,1-dt/250)), gr=cx.createLinearGradient(0,ty,0,ty-L);
+      gr.addColorStop(0,"rgba(255,255,255,.55)"); gr.addColorStop(1,"rgba(85,201,219,0)");
+      cx.fillStyle=gr; const w=cw*.07; cx.fillRect(tx-w/2,ty-L,w,L);
+    }
+    if(dt>=0 && dt<850){ // deploy shockwave
+      const k=dt/850; cx.strokeStyle="rgba(255,255,255,"+(.6*(1-k))+")"; cx.lineWidth=2.5*(1-k)+.5;
+      cx.beginPath(); cx.arc(tx,cy,30+eOut(k)*Math.max(W,H)*.75,0,Math.PI*2); cx.stroke();
+    }
+    // iris: the token opens and the site is behind it
+    if(t>=TI){
+      if(!ix){ ix=tx; iy=ty; }
+      const k=eIn(clamp((t-TI)/(TE-TI))), R=k*Math.hypot(Math.max(ix,W-ix),Math.max(iy,H-iy))*1.04;
+      const m="radial-gradient(circle at "+ix+"px "+iy+"px, transparent "+R+"px, #000 "+(R+1)+"px)";
+      ov.style.webkitMaskImage=m; ov.style.maskImage=m;
+      iris.style.cssText="left:"+ix+"px;top:"+iy+"px;width:"+(2*R+6)+"px;height:"+(2*R+6)+"px;opacity:"+(1-k*.7);
+    } else { ov.style.webkitMaskImage=ov.style.maskImage="none"; iris.style.opacity="0"; }
+  }
+
+  function finish(){ if(done) return; done=true; cancelAnimationFrame(raf); ov.hidden=true; ov.classList.remove("out");
+    ov.style.webkitMaskImage=ov.style.maskImage="none"; root.style.overflow=""; root.classList.remove("pre"); }
+  function skip(){ if(done) return; ov.classList.add("out"); root.classList.remove("pre"); setTimeout(finish,460); }
+
+  function play(){
+    done=false; ix=0; iy=0; lastState="";
+    const tpl2=$("chuteTpl").innerHTML.replace(/id="c(g|grain|can|glow)"/g,'id="i$1"').replace(/url\(#c(g|grain|can|glow)\)/g,'url(#i$1)');
+    chute.innerHTML=tpl2; cn=chute.querySelector(".cn"); lnG=chute.querySelector(".ln"); lines=[...lnG.querySelectorAll("path")];
+    lines.forEach(p=>{ p.style.strokeDasharray="1 1"; });
+    word.innerHTML="PIONEER".split("").map(c=>"<span><i>"+c+"</i></span>").join(""); letters=[...word.querySelectorAll("i")];
+    root.classList.add("pre"); root.style.overflow="hidden"; ov.hidden=false; size();
+    if(live) rpc("eth_blockNumber",[]).then(h=>{ blockN=parseInt(h,16); }).catch(()=>{});
+    if(fixedT!==null){ render(fixedT); return; }
+    let t0=null;
+    const frame=ts=>{ if(done) return; if(t0===null) t0=ts; const t=ts-t0; render(Math.min(t,TE)); if(t>=TE){ finish(); return; } raf=requestAnimationFrame(frame); };
+    raf=requestAnimationFrame(frame);
+  }
+  window.PIONEER_INTRO={render:t=>{done=false;render(t)}, play};
+  addEventListener("resize",()=>{ if(!done) size(); });
+  ov.addEventListener("click",skip);
+  addEventListener("keydown",e=>{ if(!done && (e.key==="Escape"||e.key==="Enter"||e.key===" ")) skip(); });
+  $("replay").addEventListener("click",()=>{ scrollTo(0,0); play(); });
+  if(!force && (seen||reduce)) return;
+  try{ sessionStorage.setItem("pioneer_intro","1"); }catch(_){}
+  play();
+})();
+
+})();
+</script>
+</body>
+</html>
