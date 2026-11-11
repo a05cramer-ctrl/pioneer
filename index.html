@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PIONEER</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="The airdrop Elysium won't give you. 3 transactions on Elysium in its first 24 hours = an equal share of $PIONEER.">
+<meta name="description" content="The airdrop pump.fun won't give you. Buy $PIONEER in its first 24 hours, hold through the close, get an equal share of 20%.">
 <meta property="og:title" content="PIONEER">
-<meta property="og:description" content="The airdrop Elysium won't give you.">
+<meta property="og:description" content="The airdrop pump.fun won't give you.">
 <meta property="og:image" content="og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.png">
@@ -17,10 +17,10 @@
 <script src="config.js"></script>
 <style>
 :root{
-  --ground:#031811; --deep:#02100b; --panel:rgba(10,46,38,.55); --panel-solid:#072820;
-  --line:rgba(214,246,250,.08); --line2:rgba(214,246,250,.16);
-  --fg:#effbfc; --mute:#9fc0c2; --dim:#5f8487;
-  --teal:#55C9DB; --tealdeep:#0E3043; --ok:#7CF0B2; --warn:#F2C46B; --bad:#FF7A7A;
+  --ground:#06100A; --deep:#030906; --panel:rgba(10,40,22,.55); --panel-solid:#082414;
+  --line:rgba(214,250,226,.08); --line2:rgba(214,250,226,.16);
+  --fg:#f0fdf4; --mute:#a3c4ae; --dim:#5f8a6c;
+  --teal:#4ADE80; --tealdeep:#15A34A; --ok:#B8F5A0; --warn:#F2C46B; --bad:#FF7A7A;
   --f-display:"Unbounded",ui-sans-serif,system-ui,sans-serif;
   --f-body:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -40,9 +40,9 @@ button,input{font:inherit;color:inherit}
 /* background: soft aurora + fading grid + the live sky canvas */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .bg::before{content:"";position:absolute;inset:-20% -20% auto;height:90vh;background:
-  radial-gradient(40% 55% at 50% 0%,rgba(85,201,219,.20),transparent 70%),
-  radial-gradient(30% 40% at 85% 10%,rgba(124,240,178,.07),transparent 70%),
-  radial-gradient(30% 40% at 12% 18%,rgba(85,201,219,.08),transparent 70%);animation:aurora 18s ease-in-out infinite alternate}
+  radial-gradient(40% 55% at 50% 0%,rgba(74,222,128,.20),transparent 70%),
+  radial-gradient(30% 40% at 85% 10%,rgba(184,245,160,.07),transparent 70%),
+  radial-gradient(30% 40% at 12% 18%,rgba(74,222,128,.08),transparent 70%);animation:aurora 18s ease-in-out infinite alternate}
 .bg::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 55% at 50% 18%,#000,transparent 75%);mask-image:radial-gradient(70% 55% at 50% 18%,#000,transparent 75%);opacity:.55}
 @keyframes aurora{to{transform:translate3d(0,4vh,0) scale(1.08)}}
 #sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
@@ -50,12 +50,12 @@ button,input{font:inherit;color:inherit}
 main,header,footer{position:relative;z-index:2}
 
 /* intro */
-#intro{position:fixed;inset:0;z-index:100;overflow:hidden;cursor:pointer;background:radial-gradient(130% 75% at 50% 125%,#0d4148 0%,#04201a 42%,#010b07 100%);transition:opacity .45s ease;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+#intro{position:fixed;inset:0;z-index:100;overflow:hidden;cursor:pointer;background:radial-gradient(130% 75% at 50% 125%,#0e4524 0%,#041f0e 42%,#010604 100%);transition:opacity .45s ease;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 #intro.out{opacity:0;pointer-events:none}
 #intro canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#intro .horizon{position:absolute;left:-25%;right:-25%;bottom:-62vh;height:90vh;border-radius:50%;background:radial-gradient(closest-side,rgba(85,201,219,.85),rgba(85,201,219,.22) 55%,transparent 100%);filter:blur(6px);opacity:0;will-change:transform,opacity}
+#intro .horizon{position:absolute;left:-25%;right:-25%;bottom:-62vh;height:90vh;border-radius:50%;background:radial-gradient(closest-side,rgba(74,222,128,.85),rgba(74,222,128,.22) 55%,transparent 100%);filter:blur(6px);opacity:0;will-change:transform,opacity}
 #intro .horizon::after{content:"";position:absolute;left:12%;right:12%;top:9%;height:2px;border-radius:50%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);filter:blur(1px)}
-#intro .flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.75),rgba(85,201,219,.18) 28%,transparent 55%);opacity:0;pointer-events:none}
+#intro .flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.75),rgba(74,222,128,.18) 28%,transparent 55%);opacity:0;pointer-events:none}
 #intro .cam{position:absolute;inset:0;display:grid;place-items:center;will-change:transform}
 #intro .rig{display:grid;justify-items:center;gap:clamp(6px,1.6vh,18px);transform:translateY(-3vh)}
 #intro .chute{width:min(66vw,52vh,460px);aspect-ratio:1;transform-origin:50% 22%;will-change:transform}
@@ -70,17 +70,17 @@ main,header,footer{position:relative;z-index:2}
 #intro .hud .bl{bottom:6px;left:8px}#intro .hud .br{bottom:6px;right:8px;justify-items:end}
 #intro .hud b{color:var(--fg);font-weight:500}
 #intro .hud .alt{font-size:clamp(26px,4.2vw,46px);letter-spacing:0;text-transform:none;line-height:1;font-variant-numeric:tabular-nums}
-#intro .hud .c{position:absolute;width:16px;height:16px;border:0 solid rgba(239,251,252,.45)}
+#intro .hud .c{position:absolute;width:16px;height:16px;border:0 solid rgba(240,253,244,.45)}
 #intro .hud .c1{top:-8px;left:-8px;border-top-width:1px;border-left-width:1px}#intro .hud .c2{top:-8px;right:-8px;border-top-width:1px;border-right-width:1px}
 #intro .hud .c3{bottom:-8px;left:-8px;border-bottom-width:1px;border-left-width:1px}#intro .hud .c4{bottom:-8px;right:-8px;border-bottom-width:1px;border-right-width:1px}
-#intro .state{border:1px solid rgba(239,251,252,.3);border-radius:999px;padding:6px 11px;color:var(--fg);display:inline-flex;align-items:center;gap:8px}
+#intro .state{border:1px solid rgba(240,253,244,.3);border-radius:999px;padding:6px 11px;color:var(--fg);display:inline-flex;align-items:center;gap:8px}
 #intro .state::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
 #intro .state.open{border-color:var(--teal);color:var(--teal)}
 #intro .state.land{border-color:var(--ok);color:var(--ok)}
 #intro .skip{pointer-events:auto;background:none;border:0;padding:4px 0;font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--dim);cursor:pointer}
 #intro .skip:hover{color:var(--fg)}
-#intro .iris{position:absolute;left:0;top:0;border-radius:50%;border:3px solid #fff;box-shadow:0 0 30px rgba(85,201,219,.8),inset 0 0 18px rgba(85,201,219,.6);transform:translate(-50%,-50%);opacity:0;pointer-events:none}
-#intro .black{position:absolute;inset:0;background:#010b07;pointer-events:none}
+#intro .iris{position:absolute;left:0;top:0;border-radius:50%;border:3px solid #fff;box-shadow:0 0 30px rgba(74,222,128,.8),inset 0 0 18px rgba(74,222,128,.6);transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+#intro .black{position:absolute;inset:0;background:#010604;pointer-events:none}
 @media (max-width:560px){ #intro .hud .tr,#intro .hud .tl span{display:none} #intro .tag{font-size:10px;letter-spacing:.14em} }
 html.pre .hero .rv{opacity:0;transform:translateY(18px)}
 .hero .rv{transition:opacity .8s ease var(--d,0s),transform .95s cubic-bezier(.2,.75,.2,1) var(--d,0s)}
@@ -94,20 +94,20 @@ header.top.scrolled{background:color-mix(in srgb,var(--deep) 78%,transparent);ba
 .brand img{width:30px;height:30px;border-radius:50%}
 .brand b{font-family:var(--f-display);font-weight:700;font-size:14px;letter-spacing:.14em}
 .top .sp{flex:1}
-.net{font-family:var(--f-mono);font-size:11px;color:var(--mute);display:flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:6px 11px;background:rgba(2,16,11,.4)}
+.net{font-family:var(--f-mono);font-size:11px;color:var(--mute);display:flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:999px;padding:6px 11px;background:rgba(2,10,5,.4)}
 .net i{width:7px;height:7px;border-radius:50%;background:var(--dim)}
 .net.live i{background:var(--ok);animation:ping 2s infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(124,240,178,.5)}80%,100%{box-shadow:0 0 0 7px rgba(124,240,178,0)}}
-.icon-btn{width:40px;height:40px;border-radius:999px;border:1px solid var(--line2);display:grid;place-items:center;background:rgba(2,16,11,.4);transition:border-color .2s,background .2s}
-.icon-btn:hover{border-color:var(--mute);background:rgba(85,201,219,.08)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(184,245,160,.5)}80%,100%{box-shadow:0 0 0 7px rgba(184,245,160,0)}}
+.icon-btn{width:40px;height:40px;border-radius:999px;border:1px solid var(--line2);display:grid;place-items:center;background:rgba(2,10,5,.4);transition:border-color .2s,background .2s}
+.icon-btn:hover{border-color:var(--mute);background:rgba(74,222,128,.08)}
 .icon-btn svg{width:16px;height:16px;fill:var(--fg)}
 
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:13px 22px;font-weight:800;font-size:15px;border:1px solid transparent;cursor:pointer;white-space:nowrap;overflow:hidden;transition:transform .2s,box-shadow .25s,background .2s}
-.btn-main{background:var(--fg);color:var(--deep);box-shadow:0 0 0 0 rgba(85,201,219,0)}
-.btn-main:hover{transform:translateY(-1px);box-shadow:0 10px 40px -8px rgba(85,201,219,.65)}
-.btn-main::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(85,201,219,.45) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 4.5s ease-in-out infinite}
+.btn-main{background:var(--fg);color:var(--deep);box-shadow:0 0 0 0 rgba(74,222,128,0)}
+.btn-main:hover{transform:translateY(-1px);box-shadow:0 10px 40px -8px rgba(74,222,128,.65)}
+.btn-main::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(74,222,128,.45) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 4.5s ease-in-out infinite}
 @keyframes sheen{0%,62%{transform:translateX(-120%)}82%,100%{transform:translateX(120%)}}
-.btn-ghost{border-color:var(--line2);background:rgba(2,16,11,.35)}
+.btn-ghost{border-color:var(--line2);background:rgba(2,10,5,.35)}
 .btn-ghost:hover{border-color:var(--mute)}
 .btn-sm{padding:9px 16px;font-size:14px}
 .btn[aria-disabled="true"],.btn:disabled{opacity:.4;pointer-events:none}
@@ -115,25 +115,25 @@ header.top.scrolled{background:color-mix(in srgb,var(--deep) 78%,transparent);ba
 /* hero */
 .hero{min-height:calc(100svh - 64px);display:grid;place-items:center;text-align:center;padding-block:24px 56px}
 .hero-in{display:grid;justify-items:center;width:100%}
-.hero-chute{width:clamp(120px,17vw,190px);aspect-ratio:1;margin-bottom:6px;filter:drop-shadow(0 20px 50px rgba(85,201,219,.35))}
+.hero-chute{width:clamp(120px,17vw,190px);aspect-ratio:1;margin-bottom:6px;filter:drop-shadow(0 20px 50px rgba(74,222,128,.35))}
 .hero-chute svg{width:100%;height:100%;overflow:visible;animation:sway 6s ease-in-out infinite;transform-origin:50% 15%}
 @keyframes sway{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(8px)}}
-.pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(85,201,219,.3);background:rgba(85,201,219,.06);border-radius:999px;padding:7px 13px}
+.pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(74,222,128,.3);background:rgba(74,222,128,.06);border-radius:999px;padding:7px 13px}
 .pill i{width:6px;height:6px;border-radius:50%;background:var(--teal)}
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(36px,7vw,92px);line-height:.98;letter-spacing:-.02em;margin:20px 0 18px;max-width:14ch;text-wrap:balance}
-h1 em{font-style:normal;background:linear-gradient(180deg,#9fe6f1,var(--teal) 55%,#2f8fa3);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 em{font-style:normal;background:linear-gradient(180deg,#c9fbd9,var(--teal) 55%,#1f9d52);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sub{font-size:clamp(16px,1.6vw,19px);color:var(--mute);margin:0 0 30px}
 .sub b{color:var(--fg);font-weight:700}
 
 .check{width:min(100%,560px);position:relative}
-.bar{display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(6,35,28,.7);border:1px solid var(--line2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:border-color .2s,box-shadow .3s}
-.bar:focus-within{border-color:rgba(85,201,219,.6);box-shadow:0 0 0 6px rgba(85,201,219,.08),0 20px 60px -20px rgba(85,201,219,.5)}
+.bar{display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(6,30,15,.7);border:1px solid var(--line2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:border-color .2s,box-shadow .3s}
+.bar:focus-within{border-color:rgba(74,222,128,.6);box-shadow:0 0 0 6px rgba(74,222,128,.08),0 20px 60px -20px rgba(74,222,128,.5)}
 .bar input{flex:1;min-width:0;background:transparent;border:0;padding:0 16px;font-family:var(--f-mono);font-size:14px;outline:none}
 .bar input::placeholder{color:var(--dim)}
 .res{min-height:70px;margin-top:16px;display:grid;justify-items:center;align-content:start;gap:10px}
 .pips{display:flex;gap:6px;width:160px}
 .pip{flex:1;height:6px;border-radius:999px;background:var(--line2);transition:background .3s,box-shadow .3s}
-.pip.on{background:var(--teal);box-shadow:0 0 12px rgba(85,201,219,.7)}
+.pip.on{background:var(--teal);box-shadow:0 0 12px rgba(74,222,128,.7)}
 .verdict{font-family:var(--f-display);font-weight:700;font-size:18px;animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
 .verdict.ok{color:var(--ok)}.verdict.warn{color:var(--warn)}.verdict.bad{color:var(--bad)}
 @keyframes pop{from{opacity:0;transform:translateY(6px) scale(.96)}}
@@ -145,12 +145,12 @@ h1 em{font-style:normal;background:linear-gradient(180deg,#9fe6f1,var(--teal) 55
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .card{position:relative;border:1px solid var(--line2);border-radius:22px;background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow:hidden;isolation:isolate}
-.card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(320px circle at var(--mx,50%) var(--my,-40%),rgba(85,201,219,.16),transparent 60%);opacity:0;transition:opacity .3s}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(320px circle at var(--mx,50%) var(--my,-40%),rgba(74,222,128,.16),transparent 60%);opacity:0;transition:opacity .3s}
 .card:hover::before{opacity:1}
 .stat{padding:24px 24px 22px}
 .lab{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
 .num{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(24px,3vw,38px);margin-top:10px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap}
-.sk{display:inline-block;height:.8em;width:5.5em;border-radius:6px;background:linear-gradient(90deg,rgba(85,201,219,.06),rgba(85,201,219,.16),rgba(85,201,219,.06));background-size:200% 100%;animation:sk 1.2s linear infinite;vertical-align:middle}
+.sk{display:inline-block;height:.8em;width:5.5em;border-radius:6px;background:linear-gradient(90deg,rgba(74,222,128,.06),rgba(74,222,128,.16),rgba(74,222,128,.06));background-size:200% 100%;animation:sk 1.2s linear infinite;vertical-align:middle}
 @keyframes sk{to{background-position:-200% 0}}
 
 section{padding-block:clamp(64px,10vw,120px)}
@@ -160,11 +160,11 @@ h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4.4vw,54px)
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:0}
 .step{padding:28px 24px 26px;display:grid;gap:44px}
-.step .n{font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--teal);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(85,201,219,.35);background:rgba(85,201,219,.07)}
+.step .n{font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--teal);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(74,222,128,.35);background:rgba(74,222,128,.07)}
 .step h3{font-family:var(--f-display);font-weight:700;font-size:21px;margin:0 0 6px;letter-spacing:-.01em}
 .step p{margin:0;color:var(--mute);font-size:15px}
 .rules{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px}
-.rules span{font-family:var(--f-mono);font-size:12px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+.rules>span{font-family:var(--f-mono);font-size:12px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:7px 13px}
 
 /* pass */
 .pass-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:center}
@@ -173,8 +173,8 @@ h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4.4vw,54px)
 .pass-actions{display:flex;gap:10px;flex-wrap:wrap}
 .stage3d{perspective:1100px}
 .pass{position:relative;aspect-ratio:1.6;border-radius:26px;padding:clamp(18px,3vw,30px);overflow:hidden;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);
-  background:radial-gradient(90% 120% at 100% 0%,rgba(85,201,219,.35),transparent 55%),linear-gradient(150deg,#0b3a40 0%,#062720 45%,#031811 100%);
-  border:1px solid rgba(214,246,250,.22);box-shadow:0 40px 90px -40px rgba(85,201,219,.55),inset 0 1px 0 rgba(255,255,255,.12)}
+  background:radial-gradient(90% 120% at 100% 0%,rgba(74,222,128,.35),transparent 55%),linear-gradient(150deg,#0c3a20 0%,#062410 45%,#06100A 100%);
+  border:1px solid rgba(214,250,226,.22);box-shadow:0 40px 90px -40px rgba(74,222,128,.55),inset 0 1px 0 rgba(255,255,255,.12)}
 .pass::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.14) 45%,transparent 60%);transform:translateX(var(--shine,-60%));transition:transform .5s;pointer-events:none}
 .pass .stripes{position:absolute;right:-6%;top:-10%;width:62%;height:120%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 10px,transparent 10px 26px);transform:rotate(-8deg);pointer-events:none}
 .pass .chute{position:absolute;right:4%;top:6%;width:44%;aspect-ratio:1;filter:drop-shadow(0 18px 30px rgba(0,0,0,.4))}
@@ -187,7 +187,7 @@ h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4.4vw,54px)
 .pass .row small{font-family:var(--f-mono);font-size:clamp(8.5px,.9vw,10px);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
 .pass .row b{font-family:var(--f-mono);font-weight:500;font-size:clamp(12px,1.4vw,16px)}
 .pass .stamp{position:absolute;left:clamp(18px,3vw,30px);top:50%;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--warn);border:1px solid rgba(242,196,107,.5);border-radius:6px;padding:3px 7px}
-.pass.locked .who{color:rgba(239,251,252,.35)}
+.pass.locked .who{color:rgba(240,253,244,.35)}
 
 /* community */
 .join{text-align:center;padding:clamp(40px,7vw,80px) 20px;display:grid;justify-items:center;gap:18px}
@@ -206,6 +206,15 @@ h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4.4vw,54px)
 footer{border-top:1px solid var(--line);padding-block:28px;color:var(--dim);font-size:13px}
 footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 
+/* live buy toasts */
+.toasts{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:40;display:grid;gap:8px;pointer-events:none}
+.toast{font-family:var(--f-mono);font-size:12px;color:var(--fg);background:rgba(6,30,15,.78);border:1px solid rgba(74,222,128,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:999px;padding:8px 13px;display:flex;gap:8px;align-items:center;animation:toastIn .45s cubic-bezier(.2,.9,.3,1.2);transition:opacity .6s,transform .6s}
+.toast i{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal)}
+.toast b{color:var(--teal);font-weight:500}
+.toast.out{opacity:0;transform:translateY(8px)}
+@keyframes toastIn{from{opacity:0;transform:translateX(-14px)}}
+.toast{white-space:nowrap}
+@media (max-width:560px){ .toasts{left:50%;transform:translateX(-50%);justify-items:center} .toast:not(:last-child){display:none} }
 /* reveal on scroll */
 .rv2{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.75,.2,1);transition-delay:var(--d,0s)}
 .rv2.in{opacity:1;transform:none}
@@ -228,11 +237,12 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 <div class="bg" aria-hidden="true"></div>
 <canvas id="sky" aria-hidden="true"></canvas>
 <div class="grain" aria-hidden="true"></div>
+<div class="toasts" id="toasts" aria-live="off"></div>
 
 <template id="chuteTpl">
 <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <defs>
- <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55C9DB"/><stop offset="1" stop-color="#0E3043"/></linearGradient>
+ <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BBF7D0"/><stop offset="1" stop-color="#15A34A"/></linearGradient>
  <filter id="cgrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 -.18"/><feComposite in2="SourceGraphic" operator="in"/><feBlend in="SourceGraphic" mode="overlay"/></filter>
  <clipPath id="ccan"><path d="M262 520 A250 250 0 0 1 762 520 Q700 490 637 520 Q575 490 512 520 Q449 490 387 520 Q324 490 262 520 Z"/></clipPath>
  <filter id="cglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
@@ -240,13 +250,14 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 <g transform="translate(512 512) scale(1.32) translate(-512 -530)">
  <g class="cn"><g clip-path="url(#ccan)">
   <rect x="250" y="260" width="530" height="280" fill="url(#cg)" filter="url(#cgrain)"/>
-  <g fill="#031811"><rect x="250" y="300" width="530" height="14"/><rect x="250" y="352" width="530" height="14"/><rect x="250" y="404" width="530" height="14"/><rect x="250" y="456" width="530" height="14"/></g>
+  <g fill="#06100A"><rect x="250" y="300" width="530" height="14"/><rect x="250" y="352" width="530" height="14"/><rect x="250" y="404" width="530" height="14"/><rect x="250" y="456" width="530" height="14"/></g>
  </g></g>
  <g class="ln" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none"><path pathLength="1" d="M492 700 L266 520"/><path pathLength="1" d="M497 700 L387 520"/><path pathLength="1" d="M512 700 L512 520"/><path pathLength="1" d="M527 700 L637 520"/><path pathLength="1" d="M532 700 L758 520"/></g>
- <g class="tk">
- <circle cx="512" cy="742" r="56" fill="#fff" filter="url(#cglow)" opacity=".5"/>
- <circle cx="512" cy="742" r="56" fill="#fff"/>
- <circle cx="512" cy="742" r="34" fill="none" stroke="#031811" stroke-width="10"/>
+ <g class="tk" transform="translate(512 752) rotate(-24)">
+ <rect x="-108" y="-56" width="216" height="112" rx="56" fill="#4ADE80" filter="url(#cglow)" opacity=".45"/>
+ <path d="M0 -48H-52A48 48 0 0 0 -52 48H0Z" fill="#4ADE80"/>
+ <path d="M0 -48H52A48 48 0 0 1 52 48H0Z" fill="#fff"/>
+ <rect x="-80" y="-34" width="160" height="12" rx="6" fill="#fff" opacity=".45"/>
  </g>
 </g>
 </svg>
@@ -260,13 +271,13 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
     <div class="rig">
       <div class="chute" id="introChute"></div>
       <div class="word" id="introWord"></div>
-      <div class="tag" id="introTag">The airdrop Elysium won't give you</div>
+      <div class="tag" id="introTag">The airdrop pump.fun won't give you</div>
     </div>
   </div>
   <div class="hud" id="hud">
     <i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
     <div class="tl"><b>$PIONEER</b><span>Drop 001 · Day one</span></div>
-    <div class="tr"><b>Elysium</b><span id="hudChain">Chain 99901</span></div>
+    <div class="tr"><b>pump.fun</b><span id="hudChain">Solana</span></div>
     <div class="bl"><span>Altitude</span><b class="alt" id="hudAlt">4,000 m</b><span id="hudVel" style="text-transform:none;letter-spacing:.08em">212 km/h</span></div>
     <div class="br"><span class="state" id="hudState">Freefall</span><button class="skip" id="skip" type="button">Skip intro →</button></div>
   </div>
@@ -278,7 +289,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
   <div class="wrap">
     <a class="brand" href="#" aria-label="PIONEER"><img src="pfp.png" alt=""><b>PIONEER</b></a>
     <div class="sp"></div>
-    <div class="net" id="net"><i></i><span id="netTxt">Elysium</span></div>
+    <div class="net" id="net"><i></i><span id="netTxt">pump.fun</span></div>
     <a class="icon-btn" id="xTop" href="#" target="_blank" rel="noopener" aria-label="PIONEER on X" hidden><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.3 22H3.2l7.3-8.3L1 2h6.4l4.4 5.9L18.9 2Zm-1.1 18h1.7L6.4 3.9H4.6L17.8 20Z"/></svg></a>
     <a class="btn btn-main btn-sm" id="buyTop" href="#" target="_blank" rel="noopener" aria-disabled="true">Buy at launch</a>
   </div>
@@ -288,12 +299,12 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
   <div class="hero wrap">
     <div class="hero-in">
       <div class="hero-chute rv" style="--d:0s" id="heroChute"></div>
-      <div class="pill rv" style="--d:.05s"><i></i>Elysium · first 24 hours</div>
-      <h1 class="rv" style="--d:.12s">The airdrop Elysium <em>won't give you.</em></h1>
-      <p class="sub rv" style="--d:.22s"><b id="minTx">3</b> transactions. First <b>24h</b>. Equal share.</p>
+      <div class="pill rv" style="--d:.05s"><i></i>pump.fun · first 24 hours</div>
+      <h1 class="rv" style="--d:.12s">The airdrop pump.fun <em>won't give you.</em></h1>
+      <p class="sub rv" style="--d:.22s">Buy in the first <b>24h</b>. Hold. <b>Equal share.</b></p>
       <form class="check rv" style="--d:.32s" id="form" autocomplete="off">
-        <div class="bar"><input id="addr" aria-label="Wallet address" placeholder="Paste your 0x wallet" spellcheck="false"><button class="btn btn-main" type="submit" id="go">Check</button></div>
-        <div class="res" id="res" aria-live="polite"><div class="pips" id="pips"></div><p class="hint" id="hint">Reads your wallet straight from Elysium.</p></div>
+        <div class="bar"><input id="addr" aria-label="Wallet address" placeholder="Paste your Solana wallet" spellcheck="false"><button class="btn btn-main" type="submit" id="go">Check</button></div>
+        <div class="res" id="res" aria-live="polite"><div class="pips" id="pips"></div><p class="hint" id="hint">Reads your buys straight from Solana.</p></div>
       </form>
       <a class="scroll-cue rv" style="--d:.5s" href="#stats" aria-label="Scroll"></a>
     </div>
@@ -302,7 +313,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
   <div class="wrap" id="stats">
     <div class="stats">
       <div class="card stat rv2"><span class="lab" id="sWinLab">Window</span><strong class="num" id="sWin"><span class="sk"></span></strong></div>
-      <div class="card stat rv2" style="--d:.08s"><span class="lab">Elysium block</span><strong class="num" id="sBlock"><span class="sk"></span></strong></div>
+      <div class="card stat rv2" style="--d:.08s"><span class="lab" id="sLiveLab">pump.fun launches / min</span><strong class="num" id="sLive"><span class="sk"></span></strong></div>
       <div class="card stat rv2" style="--d:.16s"><span class="lab">Airdrop pool</span><strong class="num" id="sPool"><span class="sk"></span></strong></div>
     </div>
   </div>
@@ -311,11 +322,11 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
     <div class="wrap">
       <div class="head rv2"><span class="pill"><i></i>How it works</span><h2>Show up early.</h2></div>
       <ol class="steps">
-        <li class="card step rv2"><span class="n">1</span><div><h3>Land on Elysium</h3><p>Bridge HYPE on day one.</p></div></li>
-        <li class="card step rv2" style="--d:.08s"><span class="n">2</span><div><h3>Send <span class="minTx">3</span> txs</h3><p>Swap, launch, send. Anything.</p></div></li>
+        <li class="card step rv2"><span class="n">1</span><div><h3>Buy $PIONEER</h3><p><span class="minBuy">0.1</span> SOL or more, first 24h.</p></div></li>
+        <li class="card step rv2" style="--d:.08s"><span class="n">2</span><div><h3>Hold the close</h3><p>Sell it all and you're out.</p></div></li>
         <li class="card step rv2" style="--d:.16s"><span class="n">3</span><div><h3>Get $PIONEER</h3><p>Same amount for every wallet.</p></div></li>
       </ol>
-      <div class="rules rv2"><span>Regular wallets only</span><span>Equal split</span><span>Snapshot at window close</span><span>List published</span></div>
+      <div class="rules rv2"><span>Min <span class="minBuy">0.1</span> SOL in</span><span>Hold at the close</span><span>Equal split</span><span>List published</span></div>
     </div>
   </section>
 
@@ -336,10 +347,10 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
           <div class="chute" id="passChute"></div>
           <div class="stamp" id="passStamp" hidden>Testnet</div>
           <div class="pass-in">
-            <div><div class="k">$PIONEER · Elysium</div><div class="who" id="pWho">Day-one Pioneer</div></div>
+            <div><div class="k">$PIONEER · pump.fun</div><div class="who" id="pWho">Day-one Pioneer</div></div>
             <div class="row">
-              <div><small>Wallet</small><b id="pAddr">0x····</b></div>
-              <div><small>Txs</small><b id="pTx">–</b></div>
+              <div><small>Wallet</small><b id="pAddr">····</b></div>
+              <div><small>SOL in</small><b id="pTx">–</b></div>
               <div><small>Status</small><b id="pStatus">Unchecked</b></div>
             </div>
           </div>
@@ -352,7 +363,7 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
     <div class="wrap">
       <div class="card join rv2">
         <h2>The sky fills up<br>on day one.</h2>
-        <p>Every chute behind this page is a live Elysium transaction.</p>
+        <p id="joinLine">Every chute behind this page is a live pump.fun launch.</p>
         <div class="acts">
           <a class="btn btn-main" id="xJoin" href="#" target="_blank" rel="noopener">Join on X</a>
           <a class="btn btn-ghost" id="tell" href="#" target="_blank" rel="noopener">Tell a friend</a>
@@ -364,8 +375,8 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
   <section id="faq" style="padding-top:0">
     <div class="wrap">
       <div class="faq rv2">
-        <details><summary>Is this from Elysium?</summary><p>No. PIONEER is independent and community-run. Elysium has no token.</p></details>
-        <details><summary>What counts?</summary><p>Any <span class="minTx">3</span> transactions your wallet sends in Elysium's first 24 hours. Contract wallets don't count.</p></details>
+        <details><summary>Is this from pump.fun?</summary><p>No. PIONEER is independent and community-run.</p></details>
+        <details><summary>What counts?</summary><p>Buys of $PIONEER adding up to <span class="minBuy">0.1</span> SOL or more in its first 24 hours, from a wallet still holding at the close. Every wallet that qualifies gets the same amount.</p></details>
         <details><summary>When does it land?</summary><p>After the window closes and the eligible list is posted.</p></details>
       </div>
     </div>
@@ -373,21 +384,24 @@ footer .wrap{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap}
 </main>
 
 <footer>
-  <div class="wrap"><span>PIONEER · not affiliated with Kinetiq</span><button class="linkbtn" id="replay" type="button">Replay intro</button></div>
+  <div class="wrap"><span>PIONEER · not affiliated with pump.fun</span><button class="linkbtn" id="replay" type="button">Replay intro</button></div>
 </footer>
 
 <script>
 (function(){
 const C = window.PIONEER_CFG || {};
 const $ = id => document.getElementById(id);
-const live = C.NETWORK === "mainnet" && C.MAINNET_RPC;
-const RPC = live ? C.MAINNET_RPC : C.TESTNET_RPC;
-const MIN = C.MIN_TX || 3;
+const CA = (C.CA||"").trim();
+const MINBUY = C.MIN_BUY_SOL || 0.1;
+const HOURS = C.WINDOW_HOURS || 24;
 const POOL = Math.round((C.TOTAL_SUPPLY||1e9) * (C.AIRDROP_PCT||20) / 100);
 const fmt = n => n.toLocaleString("en-US");
-const short = a => a.slice(0,6)+"…"+a.slice(-4);
+const sol = n => (n>=10? n.toFixed(1) : n>=1? n.toFixed(2) : n.toFixed(3)).replace(/\.?0+$/,"");
+const short = a => a.slice(0,4)+"…"+a.slice(-4);
 const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 const SITE = C.SITE || location.href.split(/[?#]/)[0];
+const API = C.API || "";            // same origin on Vercel
+const live = !!CA;                  // used by the intro HUD
 
 /* art */
 const tpl = $("chuteTpl").innerHTML;
@@ -395,13 +409,14 @@ const uniq = p => tpl.replace(/id="c(g|grain|can|glow)"/g,'id="'+p+'$1"').replac
 $("heroChute").innerHTML = uniq("h"); $("passChute").innerHTML = uniq("p");
 
 /* config copy */
-document.querySelectorAll(".minTx").forEach(e=>e.textContent=MIN); $("minTx").textContent=MIN;
-$("pips").innerHTML = Array.from({length:MIN},()=>'<div class="pip"></div>').join("");
-if(C.CA){ const b=$("buyTop"); if(C.BUY){ b.href=C.BUY; b.removeAttribute("aria-disabled"); b.textContent="Buy $PIONEER"; } }
+document.querySelectorAll(".minBuy").forEach(e=>e.textContent=sol(MINBUY));
+$("pips").innerHTML = '<div class="pip"></div><div class="pip"></div>';
+if(CA){ const b=$("buyTop"); b.href=C.BUY || ("https://pump.fun/coin/"+CA); b.removeAttribute("aria-disabled"); b.textContent="Buy $PIONEER"; }
 const X = C.X || "";
-if(X){ $("xTop").href=X; $("xTop").hidden=false; $("xJoin").href=X; } else { $("xJoin").href="https://x.com/search?q=%24PIONEER%20Elysium&f=live"; }
-const tellText = "Elysium has no airdrop. $PIONEER is the airdrop.\n\n"+MIN+" txs on Elysium in the first 24h = equal share.\n\nCheck your wallet:";
+if(X){ $("xTop").href=X; $("xTop").hidden=false; $("xJoin").href=X; } else { $("xJoin").href="https://x.com/search?q=%24PIONEER&f=live"; }
+const tellText = "The airdrop pump.fun won't give you.\n\nBuy $PIONEER in its first 24h, hold through the close, get an equal share of 20%.\n\nCheck your wallet:";
 $("tell").href = "https://x.com/intent/post?text="+encodeURIComponent(tellText)+"&url="+encodeURIComponent(SITE);
+if(CA){ $("joinLine").textContent="Every bright chute behind this page is a live $PIONEER buy."; $("sLiveLab").textContent="$PIONEER buys / min"; }
 
 /* header on scroll */
 const top=$("top"); const onScroll=()=>top.classList.toggle("scrolled",scrollY>10); addEventListener("scroll",onScroll,{passive:true}); onScroll();
@@ -421,13 +436,14 @@ if(!reduce){
   card.parentElement.addEventListener("pointerleave",()=>{ card.style.transform=""; card.style.setProperty("--shine","-60%"); });
 }
 
-/* window */
-const W0 = C.WINDOW_START ? Date.parse(C.WINDOW_START) : NaN, W1 = W0 + (C.WINDOW_HOURS||24)*3600e3;
+/* window: 24h from the coin's launch. LAUNCH_TIME in config wins; otherwise the server finds the mint's first tx. */
+let W0 = C.LAUNCH_TIME ? Date.parse(C.LAUNCH_TIME) : NaN, W1 = W0 + HOURS*3600e3;
+function setStart(ms){ W0=ms; W1=W0+HOURS*3600e3; tickWin(); }
+if(CA && isNaN(W0)) fetch(API+"/api/launch?mint="+CA).then(r=>r.json()).then(j=>{ if(j.launchTs) setStart(j.launchTs*1000); }).catch(()=>{});
 const hms = ms=>{ ms=Math.max(0,ms); const h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60e3),s=Math.floor(ms%60e3/1e3); return [h,m,s].map(v=>String(v).padStart(2,"0")).join(":"); };
-const phase = ()=> isNaN(W0) ? "pre" : Date.now()<W0 ? "pre" : Date.now()<W1 ? "open" : "closed";
+const phase = ()=> !CA || isNaN(W0) ? "pre" : Date.now()<W1 ? "open" : "closed";
 function tickWin(){ const p=phase(), n=Date.now();
-  if(isNaN(W0)){ $("sWinLab").textContent="Window opens"; $("sWin").textContent="At mainnet"; }
-  else if(p==="pre"){ $("sWinLab").textContent="Window opens in"; $("sWin").textContent=hms(W0-n); }
+  if(p==="pre"){ $("sWinLab").textContent="Window opens"; $("sWin").textContent="At launch"; }
   else if(p==="open"){ $("sWinLab").textContent="Time left"; $("sWin").textContent=hms(W1-n); }
   else { $("sWinLab").textContent="Window"; $("sWin").textContent="Closed"; } }
 tickWin(); setInterval(tickWin,1000);
@@ -437,108 +453,110 @@ tickWin(); setInterval(tickWin,1000);
   const f=t=>{ const k=Math.min(1,(t-t0)/1400), e=1-Math.pow(1-k,3); el.textContent=fmt(Math.round(POOL*e)); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); };
   if(io && !reduce){ const o=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ run(); o.disconnect(); } },{threshold:.4}); o.observe(el); } else el.textContent=fmt(POOL); })();
 
-/* live sky: ambient chutes drift; every live Elysium tx drops a bright one */
+/* live sky: ambient chutes drift; every live pump.fun launch (before CA) or $PIONEER buy (after) drops a bright one */
 const sky=$("sky"), sx=sky.getContext("2d"); let SW=0,SH=0; const chutes=[];
 function skySize(){ const d=Math.min(2,devicePixelRatio||1); SW=innerWidth; SH=innerHeight; sky.width=SW*d; sky.height=SH*d; sx.setTransform(d,0,0,d,0,0); }
 skySize(); addEventListener("resize",skySize);
-function add(liveOne, y){ const z=liveOne? .55+Math.random()*.45 : .15+Math.random()*.35;
+function add(liveOne, y, big){ const z=liveOne? (big? .9+Math.random()*.3 : .55+Math.random()*.45) : .15+Math.random()*.35;
   chutes.push({x:Math.random()*SW, y: y!=null?y:-30, z, live:liveOne, ph:Math.random()*6.28, a: liveOne? 0 : .05+z*.12}); }
 for(let i=0,n=Math.round(Math.min(22,SW*SH/60000));i<n;i++) add(false, Math.random()*SH);
 function drawChute(x,y,s,a,rot,lit){
   sx.save(); sx.translate(x,y); sx.rotate(rot); sx.globalAlpha=a;
-  sx.fillStyle = lit? "#55C9DB" : "#8fd3dd"; sx.beginPath(); sx.arc(0,0,s,Math.PI,0); sx.closePath(); sx.fill();
-  sx.fillStyle="rgba(3,24,17,.85)"; for(const k of [.35,.65]){ sx.fillRect(-s, -s*k, s*2, Math.max(1,s*.09)); }
+  sx.fillStyle = lit? "#4ADE80" : "#9be8b5"; sx.beginPath(); sx.arc(0,0,s,Math.PI,0); sx.closePath(); sx.fill();
+  sx.fillStyle="rgba(3,16,9,.85)"; for(const k of [.35,.65]){ sx.fillRect(-s, -s*k, s*2, Math.max(1,s*.09)); }
   sx.strokeStyle="rgba(255,255,255,.9)"; sx.lineWidth=Math.max(.6,s*.07); sx.beginPath();
   sx.moveTo(-s,0); sx.lineTo(0,s*1.35); sx.moveTo(s,0); sx.lineTo(0,s*1.35); sx.moveTo(0,0); sx.lineTo(0,s*1.35); sx.stroke();
-  sx.fillStyle="#fff"; if(lit){ sx.shadowColor="rgba(85,201,219,.9)"; sx.shadowBlur=s*1.2; }
-  sx.beginPath(); sx.arc(0,s*1.55,s*.26,0,6.283); sx.fill(); sx.restore(); }
+  sx.translate(0,s*1.6); sx.rotate(-.42); if(lit){ sx.shadowColor="rgba(74,222,128,.9)"; sx.shadowBlur=s*1.2; }
+  const pw=s*.5, ph=s*.24; sx.beginPath(); sx.moveTo(0,-ph); sx.lineTo(-pw+ph,-ph); sx.arc(-pw+ph,0,ph,-Math.PI/2,Math.PI/2,true); sx.lineTo(0,ph); sx.closePath(); sx.fillStyle="#4ADE80"; sx.fill();
+  sx.beginPath(); sx.moveTo(0,-ph); sx.lineTo(pw-ph,-ph); sx.arc(pw-ph,0,ph,-Math.PI/2,Math.PI/2); sx.lineTo(0,ph); sx.closePath(); sx.fillStyle="#fff"; sx.fill(); sx.restore(); }
 let last=performance.now();
 function skyFrame(t){ const dt=Math.min(50,t-last); last=t; sx.clearRect(0,0,SW,SH);
   for(let i=chutes.length-1;i>=0;i--){ const c=chutes[i];
     c.y += dt*(.012+c.z*.03); c.x += Math.sin(t/1800+c.ph)*.12*c.z;
-    if(c.live){ c.a=Math.min(.75, c.a+dt/600); if(c.y>SH*.55) c.a*=.985; }
+    if(c.live){ c.a=Math.min(.8, c.a+dt/600); if(c.y>SH*.55) c.a*=.985; }
     if(c.y>SH+40 || (c.live && c.a<.02 && c.y>SH*.5)){ chutes.splice(i,1); if(!c.live) add(false); continue; }
     drawChute(c.x,c.y,5+c.z*11,c.a,Math.sin(t/900+c.ph)*.18,c.live); }
   requestAnimationFrame(skyFrame); }
 if(!reduce) requestAnimationFrame(skyFrame);
 
-/* rpc + live chain */
-async function rpc(method, params){
-  const r = await fetch(RPC,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({jsonrpc:"2.0",id:1,method,params})});
-  const j = await r.json(); if(j.error) throw new Error(j.error.message||"rpc error"); return j.result; }
-let lastNum=0;
-async function tickChain(){
-  try{ const b=await rpc("eth_getBlockByNumber",["latest",false]); const num=parseInt(b.number,16);
-    $("sBlock").textContent=fmt(num); $("net").className="net live"; $("netTxt").textContent= live? "Elysium mainnet" : "Elysium testnet";
-    if(num>lastNum){ const n=Math.min(8,Math.max(0,(b.transactions||[]).length-1)); if(lastNum && !reduce) for(let i=0;i<n;i++) setTimeout(()=>add(true),i*140); lastNum=num; }
-  }catch(e){ $("net").className="net"; $("netTxt").textContent="Reconnecting"; } }
-tickChain(); setInterval(tickChain,1500);
+/* toasts: who just bought */
+function toast(html){ const box=$("toasts"); const el=document.createElement("div"); el.className="toast"; el.innerHTML="<i></i>"+html; box.appendChild(el);
+  while(box.children.length>3) box.firstChild.remove();
+  setTimeout(()=>{ el.classList.add("out"); setTimeout(()=>el.remove(),650); },4200); }
+
+/* live feed: before launch, every new pump.fun coin (PumpPortal's public websocket); after launch, every $PIONEER buy (/api/buys) */
+const hits=[];
+function rate(){ const now=Date.now(); while(hits.length && now-hits[0]>60e3) hits.shift(); return hits.length; }
+const rateStart=Date.now();
+setInterval(()=>{ const r=rate(), el=$("sLive"), age=Date.now()-rateStart; if(age<15e3 && !r) return; el.textContent = age<60e3 ? Math.round(r*60e3/Math.max(1,age)) : r; },1000);
+function online(on, txt){ $("net").className = on ? "net live" : "net"; $("netTxt").textContent = txt; }
+if(!CA){
+  let wsTries=0;
+  const connect=()=>{ let ws; try{ ws=new WebSocket("wss://pumpportal.fun/api/data"); }catch(_){ return; }
+    ws.onopen=()=>{ wsTries=0; online(true,"pump.fun live"); ws.send(JSON.stringify({method:"subscribeNewToken"})); };
+    ws.onmessage=e=>{ let m; try{ m=JSON.parse(e.data); }catch(_){ return; } if(m && m.txType==="create"){ hits.push(Date.now()); if(!reduce) add(true); } };
+    ws.onclose=()=>{ online(false,"Reconnecting"); setTimeout(connect, Math.min(30e3, 2000*(++wsTries))); };
+    ws.onerror=()=>{ try{ ws.close(); }catch(_){} };
+  };
+  connect();
+} else {
+  const seen=new Set(); let first=true;
+  const poll=async()=>{ try{ const j=await fetch(API+"/api/buys?mint="+CA).then(r=>r.json()); if(!j.buys) throw 0; online(true,"$PIONEER live");
+      const fresh=j.buys.filter(b=>!seen.has(b.sig)).reverse(); fresh.forEach(b=>seen.add(b.sig));
+      if(!first) fresh.forEach((b,i)=>setTimeout(()=>{ hits.push(Date.now()); if(!reduce) add(true,null,b.sol>=1); toast(short(b.wallet)+" bought <b>"+sol(b.sol)+" SOL</b>"); }, i*450));
+      first=false;
+    }catch(_){ online(false,"Reconnecting"); } };
+  poll(); setInterval(poll,5000);
+}
 
 /* checker + pass */
 let passData=null;
-function setPips(n){ [...$("pips").children].forEach((p,i)=>p.classList.toggle("on",i<n)); }
+function setPips(k){ [...$("pips").children].forEach((p,i)=>p.classList.toggle("on",i<k)); }
 function verdict(cls,title,hint){ $("res").querySelector(".verdict")?.remove(); const v=document.createElement("div"); v.className="verdict "+cls; v.textContent=title; $("res").insertBefore(v,$("hint")); $("hint").textContent=hint; }
-function fillPass(a,n,ok){
-  passData={a,n,ok}; card.classList.toggle("locked",!ok);
-  $("pAddr").textContent=short(a); $("pTx").textContent=fmt(n); $("pStatus").textContent= ok ? "Eligible" : n+"/"+MIN;
-  $("pWho").textContent = ok ? "Day-one Pioneer" : "Almost a Pioneer"; $("passStamp").hidden = !!live;
-  const sh=$("share"); const txt = ok ? "I'm a day-one Pioneer on Elysium. "+fmt(n)+" txs in.\n\nElysium has no airdrop. $PIONEER is the airdrop.\n\nCheck yours:" : "I'm "+n+"/"+MIN+" on Elysium. Racing for the $PIONEER airdrop.\n\nCheck yours:";
+function fillPass(a,r){
+  passData={a,...r}; const ok=r.eligible; card.classList.toggle("locked",!ok);
+  $("pAddr").textContent=short(a); $("pTx").textContent=sol(r.solIn); $("pStatus").textContent= ok ? "Eligible" : !r.holding ? "Not holding" : "Under "+sol(MINBUY);
+  $("pWho").textContent = ok ? "Day-one Pioneer" : "Almost a Pioneer"; $("passStamp").hidden = true;
+  const sh=$("share"); const txt = ok ? "Day-one Pioneer. "+sol(r.solIn)+" SOL into $PIONEER in its first 24h.\n\nThe airdrop pump.fun won't give you.\n\nCheck yours:" : "Almost a Pioneer. Still time to get into $PIONEER's first 24h.\n\nCheck yours:";
   sh.href="https://x.com/intent/post?text="+encodeURIComponent(txt)+"&url="+encodeURIComponent(SITE); sh.removeAttribute("aria-disabled");
-  $("save").disabled=false; $("passCopy").textContent= ok ? "You're in. Post it and bring your people." : "Send "+(MIN-n)+" more, then post your pass.";
-}
-/* window blocks: txs are counted as nonce(end) - nonce(start), so nothing sent before the window counts */
-const bcache={};
-async function blockAt(ts){ // first block with timestamp >= ts
-  if(bcache[ts]) return bcache[ts];
-  try{ const k="pio_b_"+ts, v=localStorage.getItem(k); if(v) return bcache[ts]=+v; }catch(_){}
-  const L=await rpc("eth_getBlockByNumber",["latest",false]); let lo=0, hi=parseInt(L.number,16);
-  if(parseInt(L.timestamp,16)<ts) return null;
-  while(hi-lo>1){ const m=Math.floor((lo+hi)/2); const b=await rpc("eth_getBlockByNumber",["0x"+m.toString(16),false]); if(parseInt(b.timestamp,16)<ts) lo=m; else hi=m; }
-  try{ localStorage.setItem("pio_b_"+ts,String(hi)); }catch(_){}
-  return bcache[ts]=hi;
-}
-const hex = n => "0x"+n.toString(16);
-async function windowTxs(a){
-  const p=phase();
-  const sb = C.WINDOW_START_BLOCK || await blockAt(Math.floor(W0/1000));
-  let eb = "latest";
-  if(p==="closed"){ const e = C.WINDOW_END_BLOCK || await blockAt(Math.floor(W1/1000)); eb = e ? hex(e-1) : "latest"; }
-  const [n1,n0,code]=await Promise.all([rpc("eth_getTransactionCount",[a,eb]), sb? rpc("eth_getTransactionCount",[a,hex(sb-1)]) : Promise.resolve("0x0"), rpc("eth_getCode",[a,"latest"])]);
-  return {n: parseInt(n1,16)-parseInt(n0,16), code};
+  $("save").disabled=false; $("passCopy").textContent= ok ? "You're in. Post it and bring your people." : "Get to "+sol(MINBUY)+" SOL and hold, then post your pass.";
 }
 $("form").addEventListener("submit", async e=>{
   e.preventDefault(); const a=$("addr").value.trim();
-  if(!/^0x[0-9a-fA-F]{40}$/.test(a)){ setPips(0); verdict("bad","Not an Elysium address","Starts with 0x, 42 characters."); return; }
-  const p=phase();
-  if(p==="pre"){ setPips(0); verdict("warn","Window not open yet", isNaN(W0) ? "Opens with Elysium's public launch. Txs from then count." : "Opens in "+hms(W0-Date.now())+". Txs from then count."); return; }
+  if(!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(a)){ setPips(0); verdict("bad","Not a Solana wallet","Paste the address you buy with."); return; }
+  if(!CA){ setPips(0); verdict("warn","Not live yet","Opens the moment $PIONEER launches."); return; }
   $("go").textContent="…"; $("go").disabled=true;
-  try{ const {n,code}=await windowTxs(a); setPips(Math.min(n,MIN)); const tn = live? "" : " · testnet";
-    if(code && code!=="0x"){ verdict("bad","Contract wallet","Use the wallet that signs your txs."); }
-    else if(n>=MIN){ verdict("ok","You're a Pioneer", fmt(n)+" txs in the window"+tn); fillPass(a,n,true); setTimeout(()=>$("pass").scrollIntoView({behavior:"smooth",block:"center"}),700); }
-    else if(p==="closed"){ verdict("bad","Missed it", n+"/"+MIN+" txs in the window"+tn); }
-    else { verdict("warn",(MIN-n)+" more to go", n+"/"+MIN+" txs in the window"+tn); fillPass(a,n,false); }
-  }catch(err){ verdict("bad","Elysium didn't answer","Try again in a few seconds."); }
+  try{
+    const q="wallet="+a+"&mint="+CA+"&min="+MINBUY+"&hours="+HOURS+(isNaN(W0)?"":"&start="+Math.floor(W0/1000));
+    const r=await fetch(API+"/api/check?"+q).then(x=>x.json()); if(r.error) throw new Error(r.error);
+    if(r.start && isNaN(W0)) setStart(r.start*1000);
+    const p=phase(); setPips((r.solIn>=MINBUY?1:0)+(r.holding?1:0));
+    if(r.eligible){ verdict("ok","You're a Pioneer", sol(r.solIn)+" SOL in"+(p==="open"?" · hold through the close":"")); fillPass(a,r); setTimeout(()=>$("pass").scrollIntoView({behavior:"smooth",block:"center"}),700); }
+    else if(p==="closed"){ verdict("bad","Missed it", r.solIn>=MINBUY ? "Bought in, but not holding at the close." : sol(r.solIn)+" SOL in during the window."); }
+    else if(r.solIn>=MINBUY && !r.holding){ verdict("bad","Not holding","Sold out. Buy back in before the close."); fillPass(a,r); }
+    else { verdict("warn", r.solIn? sol(MINBUY-r.solIn)+" SOL to go" : "No buys yet", sol(r.solIn)+" / "+sol(MINBUY)+" SOL in the first 24h"); fillPass(a,r); }
+  }catch(err){ verdict("bad","Couldn't read Solana","Try again in a few seconds."); }
   $("go").textContent="Check"; $("go").disabled=false;
 });
 
 /* pass image: 1200x630 for X */
 $("save").addEventListener("click", async ()=>{
-  if(!passData) return; const {a,n,ok}=passData;
+  if(!passData) return; const {a,solIn,eligible:ok}=passData;
   try{ await Promise.all(["800 64px Unbounded","500 22px 'IBM Plex Mono'"].map(f=>document.fonts.load(f))); }catch(_){}
   const cv=document.createElement("canvas"); cv.width=1200; cv.height=630; const g=cv.getContext("2d");
-  let gr=g.createLinearGradient(0,0,1200,630); gr.addColorStop(0,"#0b3a40"); gr.addColorStop(.5,"#062720"); gr.addColorStop(1,"#031811"); g.fillStyle=gr; g.fillRect(0,0,1200,630);
-  gr=g.createRadialGradient(1050,40,10,1050,40,700); gr.addColorStop(0,"rgba(85,201,219,.4)"); gr.addColorStop(1,"rgba(85,201,219,0)"); g.fillStyle=gr; g.fillRect(0,0,1200,630);
+  let gr=g.createLinearGradient(0,0,1200,630); gr.addColorStop(0,"#0c3a20"); gr.addColorStop(.5,"#062410"); gr.addColorStop(1,"#06100A"); g.fillStyle=gr; g.fillRect(0,0,1200,630);
+  gr=g.createRadialGradient(1050,40,10,1050,40,700); gr.addColorStop(0,"rgba(74,222,128,.4)"); gr.addColorStop(1,"rgba(74,222,128,0)"); g.fillStyle=gr; g.fillRect(0,0,1200,630);
   const img=new Image(); img.src="pfp.png"; await img.decode().catch(()=>{});
   if(img.naturalWidth){ g.save(); g.beginPath(); g.arc(905,315,250,0,6.283); g.clip(); g.drawImage(img,655,65,500,500); g.restore(); }
-  g.fillStyle="#55C9DB"; g.font="500 22px 'IBM Plex Mono', monospace"; g.fillText("$PIONEER · ELYSIUM", 70, 110);
-  g.fillStyle="#effbfc"; g.font="800 64px Unbounded, sans-serif"; const w=ok?["Day-one","Pioneer"]:["Almost a","Pioneer"]; g.fillText(w[0],70,215); g.fillText(w[1],70,290);
-  g.fillStyle="#5f8487"; g.font="500 18px 'IBM Plex Mono', monospace"; g.fillText("WALLET",70,455); g.fillText("TXS",370,455); g.fillText("STATUS",500,455);
-  g.fillStyle="#effbfc"; g.font="500 28px 'IBM Plex Mono', monospace"; g.fillText(short(a),70,495); g.fillText(fmt(n),370,495); g.fillText(ok?"Eligible":n+"/"+MIN,500,495);
-  g.fillStyle="#9fc0c2"; g.font="500 18px 'IBM Plex Mono', monospace"; g.fillText("The airdrop Elysium won't give you."+(live?"":"  (testnet)"),70,575);
+  g.fillStyle="#4ADE80"; g.font="500 22px 'IBM Plex Mono', monospace"; g.fillText("$PIONEER · PUMP.FUN", 70, 110);
+  g.fillStyle="#f0fdf4"; g.font="800 64px Unbounded, sans-serif"; const w=ok?["Day-one","Pioneer"]:["Almost a","Pioneer"]; g.fillText(w[0],70,215); g.fillText(w[1],70,290);
+  g.fillStyle="#5f8a6c"; g.font="500 18px 'IBM Plex Mono', monospace"; g.fillText("WALLET",70,455); g.fillText("SOL IN",330,455); g.fillText("STATUS",500,455);
+  g.fillStyle="#f0fdf4"; g.font="500 28px 'IBM Plex Mono', monospace"; g.fillText(short(a),70,495); g.fillText(sol(solIn),330,495); g.fillText(ok?"Eligible":"Not yet",500,495);
+  g.fillStyle="#a3c4ae"; g.font="500 18px 'IBM Plex Mono', monospace"; g.fillText("The airdrop pump.fun won't give you.",70,575);
   const link=document.createElement("a"); link.download="pioneer-pass.png"; link.href=cv.toDataURL("image/png"); document.body.appendChild(link); link.click(); link.remove();
 });
 
-/* intro: a skydive. freefall -> chute snaps open -> drift -> land on Elysium -> the token opens into the site */
+/* intro: a skydive. freefall -> chute snaps open -> drift -> land -> the token opens into the site */
 (function(){
   const ov=$("intro"), root=document.documentElement;
   const q=new URLSearchParams(location.search);
@@ -559,7 +577,7 @@ $("save").addEventListener("click", async ()=>{
   let sd=11; const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;
   const P=Array.from({length:150},()=>({x:rnd(),y:rnd(),z:.2+rnd()*.8,w:rnd()}));
   function size(){ const d=Math.min(2,window.devicePixelRatio||1); W=innerWidth; H=innerHeight; cv.width=W*d; cv.height=H*d; cx.setTransform(d,0,0,d,0,0); }
-  function tokenPos(){ const r=chute.getBoundingClientRect(); return [r.left+r.width/2, r.top+r.height*.773, r.width, r.top+r.height*.33]; }
+  function tokenPos(){ const r=chute.getBoundingClientRect(); return [r.left+r.width/2, r.top+r.height*.786, r.width, r.top+r.height*.33]; }
 
   function render(t){
     const dt=t-TD, landed=t>=TL;
@@ -575,7 +593,7 @@ $("save").addEventListener("click", async ()=>{
     vel.textContent = Math.round(v)+" km/h";
     const st = t<TD+60 ? "Freefall" : landed ? "Landed" : "Chute open";
     if(st!==lastState){ lastState=st; state.textContent=st; state.className="state"+(st==="Chute open"?" open":st==="Landed"?" land":"");
-      if(landed) chain.textContent = (live && blockN) ? "Block "+fmt(blockN) : "Day one"; else chain.textContent="Chain "+(C.MAINNET_CHAIN_ID||99901); }
+      chain.textContent = landed ? "Day one" : "Solana"; }
     // the rig: falls in from above, yanked up on deploy, then drifts down and sways
     let y = t<TD ? lerp(-64,0,eOut(t/TD)) : 0, rot;
     if(t>=TD){ y += -3.4*(1-Math.exp(-dt/55))*Math.exp(-dt/380) + 2.4*eIO(clamp(dt/(TL-TD))); rot=Math.sin(dt/620)*3.4*clamp(dt/450)*(landed?Math.max(0,1-(t-TL)/400):1); }
@@ -600,13 +618,13 @@ $("save").addEventListener("click", async ()=>{
     for(const p of P){
       const yy=(((p.y-p.z*S/380)%1)+1)%1, Y=yy*(H+240)-120, X=p.x*W, len=1.5+p.z*vf*H*.2;
       const al=(.1+.5*p.z)*(.3+.7*vf);
-      cx.strokeStyle=p.w>.8?"rgba(85,201,219,"+al+")":"rgba(226,248,250,"+al*.85+")"; cx.lineWidth=.6+p.z*1.5;
+      cx.strokeStyle=p.w>.8?"rgba(74,222,128,"+al+")":"rgba(226,250,234,"+al*.85+")"; cx.lineWidth=.6+p.z*1.5;
       cx.beginPath(); cx.moveTo(X,Y); cx.lineTo(X,Y+len); cx.stroke();
     }
     const [tx,ty,cw,cy]=tokenPos();
     if(t<TD+250){ // token's own trail in freefall
       const L=H*.38*vf*(t<TD?1:Math.max(0,1-dt/250)), gr=cx.createLinearGradient(0,ty,0,ty-L);
-      gr.addColorStop(0,"rgba(255,255,255,.55)"); gr.addColorStop(1,"rgba(85,201,219,0)");
+      gr.addColorStop(0,"rgba(255,255,255,.55)"); gr.addColorStop(1,"rgba(74,222,128,0)");
       cx.fillStyle=gr; const w=cw*.07; cx.fillRect(tx-w/2,ty-L,w,L);
     }
     if(dt>=0 && dt<850){ // deploy shockwave
@@ -634,7 +652,6 @@ $("save").addEventListener("click", async ()=>{
     lines.forEach(p=>{ p.style.strokeDasharray="1 1"; });
     word.innerHTML="PIONEER".split("").map(c=>"<span><i>"+c+"</i></span>").join(""); letters=[...word.querySelectorAll("i")];
     root.classList.add("pre"); root.style.overflow="hidden"; ov.hidden=false; size();
-    if(live) rpc("eth_blockNumber",[]).then(h=>{ blockN=parseInt(h,16); }).catch(()=>{});
     if(fixedT!==null){ render(fixedT); return; }
     let t0=null;
     const frame=ts=>{ if(done) return; if(t0===null) t0=ts; const t=ts-t0; render(Math.min(t,TE)); if(t>=TE){ finish(); return; } raf=requestAnimationFrame(frame); };
