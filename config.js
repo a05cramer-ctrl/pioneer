@@ -1,10 +1,10 @@
 window.PIONEER_CFG = {
   NAME: "PIONEER",
   TICKER: "PIONEER",
-  CA: "",                    // pump.fun mint. Empty = pre-launch (checker says "not live yet", sky shows every new pump.fun launch)
-  X: "",
+  CA: "6jLMYC75Yrcwk2qGMhNhK9JEkfeMJzdDDtMKX6tUpump",                    // pump.fun mint. Empty = pre-launch (checker says "not live yet", sky shows every new pump.fun launch)
+  X: "https://x.com/PIONEERdrops",
   BUY: "",                   // optional; defaults to https://pump.fun/coin/<CA>
-  SITE: "",                  // public site URL used in share posts (falls back to the current page)
+  SITE: "https://pioneer-drab.vercel.app",                  // public site URL used in share posts (falls back to the current page)
 
   // The window: first WINDOW_HOURS after launch. Leave LAUNCH_TIME empty to read it from the mint's first transaction.
   LAUNCH_TIME: "",           // e.g. "2026-11-11T15:00:00Z"
