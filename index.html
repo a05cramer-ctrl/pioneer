@@ -439,7 +439,16 @@ if(!reduce){
 /* window: 24h from the coin's launch. LAUNCH_TIME in config wins; otherwise the server finds the mint's first tx. */
 let W0 = C.LAUNCH_TIME ? Date.parse(C.LAUNCH_TIME) : NaN, W1 = W0 + HOURS*3600e3;
 function setStart(ms){ W0=ms; W1=W0+HOURS*3600e3; tickWin(); }
-if(CA && isNaN(W0)) fetch(API+"/api/launch?mint="+CA).then(r=>r.json()).then(j=>{ if(j.launchTs) setStart(j.launchTs*1000); }).catch(()=>{});
+// launch time: server first, then the mint's oldest tx straight from a public RPC in the browser; retried until the coin exists
+async function oldestTx(){ const U="https://solana-rpc.publicnode.com"; let before, oldest=null;
+  for(let i=0;i<25;i++){ const r=await fetch(U,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({jsonrpc:"2.0",id:1,method:"getSignaturesForAddress",params:[CA, before?{limit:1000,before}:{limit:1000}]})}).then(x=>x.json());
+    const s=r.result||[]; if(!s.length) break; oldest=s[s.length-1]; before=oldest.signature; if(s.length<1000) return oldest.blockTime||null; }
+  return null; }
+async function findStart(){ if(!CA || !isNaN(W0)) return;
+  try{ const j=await fetch(API+"/api/launch?mint="+CA).then(r=>r.json()); if(j.launchTs) return setStart(j.launchTs*1000); }catch(_){}
+  try{ const t=await oldestTx(); if(t) return setStart(t*1000); }catch(_){}
+  setTimeout(findStart,15000); }
+findStart();
 const hms = ms=>{ ms=Math.max(0,ms); const h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60e3),s=Math.floor(ms%60e3/1e3); return [h,m,s].map(v=>String(v).padStart(2,"0")).join(":"); };
 const phase = ()=> !CA || isNaN(W0) ? "pre" : Date.now()<W1 ? "open" : "closed";
 function tickWin(){ const p=phase(), n=Date.now();
